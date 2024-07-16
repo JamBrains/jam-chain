@@ -11,8 +11,8 @@ I would like to list/change the following JAM client implementation on https://j
 
 - Name: ""
 - Bio: ""
-- Website: ""
+- Optional website: ""
 - Language: ""
 - Language Set: ""
 - Finished milestones: 0
-- Optional: contact (email/matrix/tg etc): ""
+- Optional contact (email/matrix/tg etc): ""
