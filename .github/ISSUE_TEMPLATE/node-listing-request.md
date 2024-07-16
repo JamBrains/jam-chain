@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-I request to add/change the following JAM node implementation:
+I would like to list/change the following JAM node implementation on https://jamcha.in/nodes:
 
-- Node name: ""
+- Name: ""
 - Bio: ""
 - Website: ""
 - Language: ""
