@@ -15,3 +15,4 @@ I would like to list/change the following JAM node implementation on https://jam
 - Language: ""
 - Language Set: ""
 - Finished milestones: 0
+- Optional: contact (email/matrix/tg etc): ""
