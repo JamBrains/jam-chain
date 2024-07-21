@@ -1,0 +1,1 @@
+call "%~dp0\phoenix_app" eval PhoenixApp.Release.migrate

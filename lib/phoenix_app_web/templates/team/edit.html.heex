@@ -1,0 +1,9 @@
+<div class="max-w-2xl mx-auto mt-8 px-4">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">Edit Team</h1>
+  
+  <%= render "form.html", Map.put(assigns, :action, Routes.team_path(@conn, :update, @team)) %>
+  
+  <div class="mt-6">
+    <%= link "Back", to: Routes.team_path(@conn, :index), class: "text-blue-600 hover:text-blue-800 hover:underline" %>
+  </div>
+</div>

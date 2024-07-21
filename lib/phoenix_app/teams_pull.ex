@@ -1,0 +1,48 @@
+defmodule PhoenixApp.Teams.Pull do
+  alias PhoenixApp.Repo
+  alias PhoenixApp.Teams.Team
+  require Logger
+  use GenServer
+
+  @url "https://raw.githubusercontent.com/w3f-webops/graypaper-website/main/src/data/clients.json"
+  @pull_interval_min 60
+
+  def start_link(opts) do
+    GenServer.start_link(__MODULE__, nil, opts)
+  end
+
+  @impl true
+  def init(_) do
+    Process.send_after(self(), :pull, 1 * 1_000)
+
+    {:ok, nil}
+  end
+
+  @impl true
+  def handle_info(:pull, nil) do
+    Process.send_after(self(), :pull, @pull_interval_min * 60 * 1_000)
+
+    refresh_teams!()
+
+    {:noreply, nil}
+  end
+
+  def refresh_teams! do
+    Logger.info("Pulling repos...")
+    res = HTTPoison.get!(@url, timeout: 60 * 1_000)
+    # TODO <https://github.com/w3f-webops/graypaper-website/issues/13>
+    body = String.replace(res.body, "},  \n]", "}]")
+    parsed = Poison.decode!(body, as: %{}, keys: :atoms)
+
+    for team <- parsed do
+      case Repo.get_by(Team, name: team.name) do
+        nil  -> %Team{}
+        team -> team
+      end
+      |> Team.changeset(team)
+      |> Repo.insert_or_update!()
+    end
+
+    Logger.info("Updated #{length(parsed)} teams.")
+  end
+end

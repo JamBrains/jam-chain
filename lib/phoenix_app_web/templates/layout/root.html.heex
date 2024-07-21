@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full dark">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <!-- <%= live_title_tag assigns[:page_title] || "", prefix: "JAM Chain 🥁✨" %> -->
+    <title>JAM Chain 🥁✨</title>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body class="flex flex-col min-h-full bg-gray-900 text-gray-100">
+    <header class="bg-gray-800 shadow-md">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <nav>
+            <ul class="flex space-x-4">
+              <li>
+                <%= link "Home", to: Routes.page_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
+              </li>
+              <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+                <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-indigo-600 hover:text-blue-300" %></li>
+              <% end %>
+            </ul>
+          </nav>
+          <%= render "_user_menu.html", assigns %>
+        </div>
+      </div>
+    </header>
+    <main class="flex-grow">
+      <%= @inner_content %>
+    </main>
+    <footer class="bg-gray-800 py-4 mt-8">
+      <div class="container mx-auto px-4 text-center text-indigo-600">
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/">License CC BY-SA 4.0</a>
+      </div>
+    </footer>
+  </body>
+</html>

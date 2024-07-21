@@ -1,0 +1,51 @@
+<div class="container mx-auto px-4 py-8 dark:bg-gray-800">
+  <h1 class="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+    <%= @team.name %>
+    <%= if not is_nil(@team.homepage) and @team.homepage != "" do %>
+      <a href={@team.homepage} class="text-blue-600 text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">↗</a>
+    <% end %>
+    <p class="ml-1 text-sm text-gray-400"><%= @team.lang %>&nbsp;(set <%= @team.lang_set %>)</p>
+  </h1>
+
+  <div class="bg-white dark:bg-gray-700 shadow-lg rounded-lg overflow-hidden">
+    <div class="p-6">
+      <ul class="space-y-4">
+        <%= if not is_nil(@team.description) and String.length(@team.description) > 0 do %>
+          <li class="flex items-center">
+            <span class="text-gray-800 dark:text-gray-100">
+              <%= @team.description %>
+            </span>
+          </li>
+        <% end %>
+        <%= if length(@team.contact) > 0 do %>
+          <li class="flex">
+            <span class="text-gray-600 dark:text-gray-300 font-semibold mr-2">Contact:</span>
+            <span class="text-gray-800 dark:text-gray-100">
+              <%= Enum.join(@team.contact, ", ") %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-2">Milestone Progress</h2>
+    <div class="flex items-center gap-x-1">
+      <%= for i <- 0..4 do %>
+        <div class={"
+          #{if i <= @team.milestone, do: "bg-blue-500", else: "bg-gray-300" }
+          #{if i == @team.milestone, do: "animate-pulse bg-blue-500", else: ""}
+          w-full h-5 flex flex-col justify-center overflow-hidden text-xs text-white text-center whitespace-nowrap transition duration-500
+        "} role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">M<%= i + 1 %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-6 space-x-4">
+    <%= if PhoenixAppWeb.UserAuth.authenticated?(@conn) do %>
+      <%= link "Edit", to: Routes.team_path(@conn, :edit, @team), class: "inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+    <% end %>
+    <%= link "Back", to: Routes.team_path(@conn, :index), class: "inline-block bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-100 font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+  </div>
+</div>
