@@ -21,7 +21,7 @@
           <li class="flex">
             <span class="text-gray-600 dark:text-gray-300 font-semibold mr-2">Contact:</span>
             <span class="text-gray-800 dark:text-gray-100">
-              <%= Enum.join(@team.contact, ", ") %>
+              <code><%= Enum.join(@team.contact, ", ") %></code>
             </span>
           </li>
         <% end %>
