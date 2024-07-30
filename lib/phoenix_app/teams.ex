@@ -18,7 +18,7 @@ defmodule PhoenixApp.Teams do
 
   """
   def list_teams do
-    Repo.all(Team)
+    Repo.all(from t in Team, order_by: :name)
   end
 
   @doc """

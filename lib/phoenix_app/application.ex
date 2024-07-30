@@ -10,7 +10,7 @@ defmodule PhoenixApp.Application do
     children = [
       # Start the Ecto repository
       PhoenixApp.Repo,
-      PhoenixApp.Teams.Pull,
+      PhoenixApp.Cron,
       # Start the Telemetry supervisor
       PhoenixAppWeb.Telemetry,
       # Start the PubSub system
