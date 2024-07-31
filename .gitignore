@@ -40,3 +40,4 @@ npm-debug.log
 /.mix
 /.hex
 /.elixir_ls
+*.DS_Store
