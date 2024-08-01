@@ -2,61 +2,69 @@
   <div class="max-w-3xl mx-auto">
     <h2 class="text-2xl font-semibold mb-4 text-white">SPEC</h2>
     <p class="text-xl text-gray-300">
-      The Graypaper is a paper with remarkable gray background written by Dr Gavin Wood to unanimously define the JAM chain.
-      It is still subject to change until being ratified by The Polkadot Fellowship.
+      The JAM chain follows a spec-first approach that lays out a formal specification for anyone to
+      verify and implement.
     </p>
   </div>
 </section>
 <section class="w-full bg-gray-900 text-center">
   <div class="max-w-3xl mx-auto px-4 grid gap-4">
-    <article class="py-8 mt-6">
-      <p class="text-xl text-gray-300">
-        Official documents
+
+    <article class="py-16">
+      <p class="text-2xl text-gray-300 mb-4">
+        Graypaper
       </p>
-      <ul class="text-gray-300 mt-8 list-disc list-inside text-left" style="list-style-type:'\2794&nbsp;';">
-        <li><%= link "The Graypaper", to: "https://graypaper.com/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-        <li><%= link "W3F - Conformance Tests", to: "https://github.com/w3f/jamtestvectors/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      </ul>
-    </article>
-  <article>
-  <p class="text-xl text-gray-300">
-    Unofficial third-party documents
-  </p>
-  <p class="text-l text-gray-300 mt-4">
-    These resources contain personal interpretation or opinion and may not be accurate. However, they
-    are provided by the community and can still aid in understanding.
-  </p>
-  <div class="flex mt-8">
-    <ul class="text-gray-300 list-disc list-inside text-left w-1/2" style="list-style-type:'\2794&nbsp;';">
-      <li><%= link "Gav - Prize Notes", to: "https://hackmd.io/@polkadot/jamprize", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      <li><%= link "Gav - Network Spec SNP", to: "https://hackmd.io/@polkadot/jamsnp", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      <li><%= link "Gav - Keysets", to: "https://hackmd.io/@polkadot/jamkeysets", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      <li><%= link "Gav - EC Test Case", to: "https://gist.github.com/gavofyork/4cde92327cd91eff3e2ab91d316cb83a", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-    </ul>
-    <ul class="text-gray-300 list-disc list-inside text-left w-1/2" style="list-style-type:'\2794&nbsp;';">
-      <li><%= link "Kian - Blog", to: "https://blog.kianenigma.nl/posts/tech/demystifying-jam/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      <li><%= link "Bryan - State Diagram", to: "https://hackmd.io/@xlc/HydGnfZ8C", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>      
-      <li><%= link "Polkadot Wiki", to: "https://wiki.polkadot.network/docs/learn-jam-chain", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-      <li><%= link "Davide - Ring VRF Example", to: "https://gist.github.com/davxy/c3327f799cb70a7c55087c97741fa8d9", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
-    </ul>
-  </div>
-  </article>
-  <p class="text-xl text-gray-300 mt-8">
-    Graypaper
-  </p>
-    <article class="">
-      <p class="text-gray-300">
-        Download the Graypaper with
+      <p class="text-xl text-gray-300">
+      The <%= link "Graypaper", to: "https://graypaper.com/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> is a paper with remarkable gray background written by Dr Gavin Wood to unanimously define the JAM chain.
+      It is still subject to change until ratification by The Polkadot Fellowship.
+    </p>
+      <object
+        class="mt-8" style="width:100%; height: auto; aspect-ratio: 21/29; overflow:hidden"
+        data="/graypaper/graypaper_lemon_jelly.pdf#toolbar=0"
+      ></object>
+
+      <p class="text-gray-300 mt-4">
+        Download it with
         <%= link "original", to: "/graypaper/graypaper_lemon_jelly.pdf", class: "text-indigo-600 hover:text-blue-300" %>,
         <%= link "dark", to: "/graypaper/graypaper_dark.pdf", class: "text-indigo-600 hover:text-blue-300" %> 
         or
         <%= link "light", to: "/graypaper/graypaper_light.pdf", class: "text-indigo-600 hover:text-blue-300" %> 
         background.
       </p>
-      <object
-        class="mt-8" style="width:100%; height: auto; aspect-ratio: 21/29; overflow:hidden"
-        data="/graypaper/graypaper_lemon_jelly.pdf#toolbar=0"
-      ></object>
+    </article>
+    
+    <article class="py-12">
+      <p class="text-2xl text-gray-300 mb-4">
+        Conformance Tests
+      </p>
+      <p class="text-xl text-gray-300">
+        Since the Graypaper describes everything in a mathematical way, it is difficult for implementors
+        to verify their implementations. The Web3 Foundation provides a set of <%= link "conformance tests", to: "https://github.com/w3f/jamtestvectors/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> to verify that client implementations adhere to the spec. These tests are also considered when judging the prize.
+      </p>
+    </article>
+
+    <article class="py-12">
+      <p class="text-2xl text-gray-300 mb-4">
+        Community Resources
+      </p>
+      <p class="text-xl text-gray-300 mt-4">
+        These resources contain personal interpretation or opinion and may not be accurate. They are
+        still provided by the community to aid in understanding.
+      </p>
+      <div class="flex mt-8 text-xl">
+        <ul class="text-gray-300 list-disc list-inside text-left w-1/2" style="list-style-type:'\2794&nbsp;';">
+          <li><%= link "Gav - Prize Notes", to: "https://hackmd.io/@polkadot/jamprize", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+          <li><%= link "Gav - Network Spec SNP", to: "https://hackmd.io/@polkadot/jamsnp", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+          <li><%= link "Gav - Keysets", to: "https://hackmd.io/@polkadot/jamkeysets", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+          <li><%= link "Gav - EC Test Case", to: "https://gist.github.com/gavofyork/4cde92327cd91eff3e2ab91d316cb83a", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+        </ul>
+        <ul class="text-gray-300 list-disc list-inside text-left w-1/2" style="list-style-type:'\2794&nbsp;';">
+          <li><%= link "Kian - Blog", to: "https://blog.kianenigma.nl/posts/tech/demystifying-jam/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+          <li><%= link "Bryan - State Diagram", to: "https://hackmd.io/@xlc/HydGnfZ8C", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>      
+          <li><%= link "Polkadot Wiki", to: "https://wiki.polkadot.network/docs/learn-jam-chain", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+          <li><%= link "Davide - Ring VRF Example", to: "https://gist.github.com/davxy/c3327f799cb70a7c55087c97741fa8d9", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %></li>
+        </ul>
+      </div>
     </article>
   </div>
 </section>
