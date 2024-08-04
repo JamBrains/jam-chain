@@ -8,4 +8,8 @@ defmodule PhoenixAppWeb.PageController do
   def spec(conn, _params) do
     render(conn, "spec.html")
   end
+
+  def tech(conn, _params) do
+    render(conn, "tech.html")
+  end
 end

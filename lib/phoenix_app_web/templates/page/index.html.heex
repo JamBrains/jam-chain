@@ -7,6 +7,7 @@
 </section>
 <section class="w-full py-16 bg-gray-900 text-center">
   <div class="max-w-3xl mx-auto px-4 grid gap-16">
+  
     <article class="py-12">
       <h2 class="text-2xl font-semibold mb-4 text-white">INTRO</h2>
       <p class="text-xl text-gray-300">
@@ -15,6 +16,7 @@
         It aims at being a successor to the Polkadot Relay Chain and is currently being implemented by multiple teams.
       </p>
     </article>
+
     <article class="py-12">
       <h2 class="text-2xl font-semibold mb-4 text-white">PRIZE</h2>
       <p class="text-xl text-gray-300">
@@ -23,12 +25,22 @@
         sets and up for grabs to anyone.
       </p>
     </article>
+
     <article class="py-12">
       <h2 class="text-2xl font-semibold mb-4 text-white">CLIENTS</h2>
       <p class="text-xl text-gray-300">
         Different <%= link "teams", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %> are working on client implementations for the JAM
         chain in parallel. The goal is to achieve client diversity from day one
         to facilitate network stability and ensure unambiguity of the spec.
+      </p>
+    </article>
+
+    <article class="py-12">
+      <h2 class="text-2xl font-semibold mb-4 text-white">TECH</h2>
+      <p class="text-xl text-gray-300">
+        A few high lights of the JAM <%= link "tech stack", to: Routes.page_path(@conn, :tech), class: "text-indigo-600 hover:text-blue-300" %> include a universal Virtual Machine, novel ZK cryptography and
+        a unique block authoring algorithm. This allows JAM to offer dynamic execution sharding and
+        atomic composability across shards.<br/>While <i>sharing</i> - not <i>sharding</i> - security.
       </p>
     </article>
     

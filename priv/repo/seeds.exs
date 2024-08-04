@@ -12,7 +12,4 @@
 
 # priv/repo/seeds.exs
 
-alias PhoenixApp.Repo
-alias PhoenixApp.Accounts.User
-
 Code.require_file("seeds_teams.exs", __DIR__)
