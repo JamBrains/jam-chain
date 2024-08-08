@@ -4,7 +4,7 @@ defmodule PhoenixApp.Cron do
   require Logger
   use GenServer
 
-  @url "https://raw.githubusercontent.com/w3f-webops/graypaper-website/main/src/data/clients.json"
+  @url "https://graypaper.com/clients/json"
   @pull_interval_min 60
 
   def start_link(opts) do
@@ -45,9 +45,7 @@ defmodule PhoenixApp.Cron do
   def refresh_teams! do
     Logger.info("Pulling repos...")
     res = HTTPoison.get!(@url, timeout: 60 * 1_000)
-    # TODO <https://github.com/w3f-webops/graypaper-website/issues/13>
-    body = String.replace(res.body, "},  \n]", "}]")
-    parsed = Poison.decode!(body, as: %{}, keys: :atoms)
+    parsed = Poison.decode!(res.body, as: %{}, keys: :atoms)
 
     for team <- parsed do
       case Repo.get_by(Team, name: team.name) do
