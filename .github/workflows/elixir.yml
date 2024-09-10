@@ -36,4 +36,4 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
 
     - name: Build
-      run: SECRET_KEY_BASE=123 bash build.sh
+      run: mix deps.get && mix compile
