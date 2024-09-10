@@ -35,8 +35,5 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
 
-    - name: Install dependencies
-      run: mix deps.get
-
     - name: Build
-      run: mix build
+      run: SECRET_KEY_BASE=123 bash build.sh
