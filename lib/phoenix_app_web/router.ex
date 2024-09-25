@@ -32,6 +32,7 @@ defmodule PhoenixAppWeb.Router do
     get("/tech", PageController, :tech)
     resources("/clients/json", TeamJsonController, only: [:index])
     resources("/clients", TeamController, only: [:index, :show])
+    resources("/messages", MessageController, only: [:index])
   end
 
   # Other scopes may use custom stacks.

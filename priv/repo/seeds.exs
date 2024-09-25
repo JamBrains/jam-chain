@@ -13,3 +13,4 @@
 # priv/repo/seeds.exs
 
 Code.require_file("seeds_teams.exs", __DIR__)
+Code.require_file("seeds_messages.exs", __DIR__)
