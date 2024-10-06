@@ -28,6 +28,9 @@
           <li>
             <%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
           </li>
+          <li>
+            <%= link "Docs", to: "https://docs.jamcha.in/", class: "text-indigo-600 hover:text-blue-300" %>
+          </li>
           <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
             <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-indigo-600 hover:text-blue-300" %></li>
           <% end %>
