@@ -17,8 +17,20 @@ defmodule PhoenixApp.Matrix do
       [%Message{}, ...]
 
   """
-  def list_matrix_messages do
-    Repo.all(Message)
+  def list_matrix_messages(room_id) do
+    from(m in Message, where: m.room_id == ^room_id)
+  end
+
+  def list_messages_paged(room_id, {:after_cursor, c}) do
+    list_matrix_messages(room_id)
+    |> order_by([m], desc: m.event_date)
+    |> Repo.paginate(after: c, limit: 50, cursor_fields: [{:event_date, :desc}, :body, :author])
+  end
+
+  def list_messages_paged(room_id, {:before_cursor, c}) do
+    list_matrix_messages(room_id)
+    |> order_by([m], desc: m.event_date)
+    |> Repo.paginate(before: c, limit: 50, cursor_fields: [{:event_date, :desc}, :body, :author])
   end
 
   @doc """

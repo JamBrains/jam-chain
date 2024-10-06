@@ -13,4 +13,20 @@
 # priv/repo/seeds.exs
 
 Code.require_file("seeds_teams.exs", __DIR__)
-Code.require_file("seeds_messages.exs", __DIR__)
+
+# chat message seeds
+
+#alias PhoenixApp.Repo
+#alias PhoenixApp.Matrix.Message
+
+#users = ["alice", "bob", "charlie"]
+#
+#for i <- 0 .. 1000 do
+#  user = Enum.random(users)
+#  Repo.insert!(%Message{
+#    author: user,
+#    body: "#{i} Hello, #{user}!",
+#    event_id: "event-#{i}",
+#    event_date: DateTime.utc_now() |> DateTime.add(i, :second)
+#  })
+#end

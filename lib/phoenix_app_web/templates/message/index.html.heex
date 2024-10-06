@@ -1,26 +1,46 @@
 <section class="w-full bg-gray-900 py-12 px-4">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-4 text-white text-center">JAM CHAT</h2>
-    <p class="text-xl text-gray-300 text-center">
-      Archive of the JAM matrix channel.
-    </p>
-  </div>
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-4 text-white text-center">JAM CHAT</h2>
+        <p class="text-xl text-gray-300 text-center">
+            Archive of the JAM matrix channel.
+        </p>
+    </div>
 </section>
 <section class="w-full py-8 bg-gray-900">
-  <div class="max-w-3xl mx-auto px-4">
-    <article>
-      <ul class="list-none space-y-1">
-        <%= for {message, index} <- Enum.with_index(@messages) do %>
-          <li class={if rem(index, 2) == 0, do: "bg-gray-800", else: "bg-gray-700"} class="p-2 rounded">
-            <div class="flex items-center">
-              <span class="inline-block bg-blue-600 text-white font-semibold px-2 py-1 rounded mr-3 w-24 text-center text-sm">
-                <%= message.author %>
-              </span>
-              <p class="text-gray-300 flex-grow text-center"><%= message.body %></p>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </article>
-  </div>
+    <div class="max-w-6xl mx-auto px-4">
+        <article>
+            <ul class="list-none space-y-1">
+                <%= for {message, index} <- Enum.with_index(@messages) do %>
+                  <a href={"https://matrix.to/#/!ddsEwXlCWnreEGuqXZ:polkadot.io/" <> message.event_id <> "?via=polkadot.io&via=matrix.org&via=parity.io"} target="_blank">
+                      <% bg_color = if Enum.at(@colors, index), do: "bg-gray-800", else: "bg-gray-700" %>
+                      
+                      <li class={"#{bg_color} p-2 rounded"}>
+                        <div class="flex items-start">
+                          <span class="message-author inline-block bg-blue-600 text-white font-semibold px-2 py-1 rounded mr-3 text-center text-sm flex-shrink-0 w-32">
+                            <%= message.author |> String.trim_leading("@") |> String.split(":") |> hd() %>
+                          </span>
+                          <p class="message-body text-gray-300 flex-grow">
+                            <%= message.body %><br>
+                            <small><%= message.event_date |> DateTime.to_string() %></small>
+                          </p>
+                        </div>
+                      </li>
+                  </a>
+                <% end %>
+            </ul>
+        </article>
+        <div class="mt-8 flex justify-between items-center">
+            <%= if not is_nil(@cursor.before) do %>
+                <%= link "Newer", to: "/chat?room=#{@room_id}&before=#{@cursor.before}", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            <% else %>
+                <span class="bg-gray-600 text-gray-400 font-bold py-2 px-4 rounded cursor-not-allowed">Newer</span>
+            <% end %>
+
+            <%= if not is_nil(@cursor.after) do %>
+                <%= link "Older", to: "/chat?room=#{@room_id}&after=#{@cursor.after}", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            <% else %>
+                <span class="bg-gray-600 text-gray-400 font-bold py-2 px-4 rounded cursor-not-allowed">Older</span>
+            <% end %>
+        </div>
+    </div>
 </section>

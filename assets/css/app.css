@@ -126,3 +126,12 @@
   100% { opacity: 0; }
 }
 
+.message-author {
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.message-body {
+  word-break: break-word;
+}
