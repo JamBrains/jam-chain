@@ -19,6 +19,15 @@
           <li>
             <%= link "Home", to: Routes.page_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
           </li>
+          <li>
+            <%= link "Tech", to: Routes.page_path(@conn, :tech), class: "text-indigo-600 hover:text-blue-300" %>
+          </li>
+          <li>
+            <%= link "Spec", to: Routes.page_path(@conn, :spec), class: "text-indigo-600 hover:text-blue-300" %>
+          </li>
+          <li>
+            <%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
+          </li>
           <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
             <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-indigo-600 hover:text-blue-300" %></li>
           <% end %>
