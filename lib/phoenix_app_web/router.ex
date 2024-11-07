@@ -30,6 +30,7 @@ defmodule PhoenixAppWeb.Router do
     get("/", PageController, :index)
     get("/spec", PageController, :spec)
     get("/tech", PageController, :tech)
+    resources("/events", EventController, only: [:index, :show])
     resources("/clients/json", TeamJsonController, only: [:index])
     resources("/clients", TeamController, only: [:index, :show])
   end
