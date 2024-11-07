@@ -8,5 +8,5 @@ Repo.insert!(%Event{
   contact: [],
   when_from: ~D[2024-11-09],
   when_to: ~D[2024-11-16],
-  where: "Bangkok, Thailand"
+  where: "Valia Hotel, Bangkok, Thailand"
 })
