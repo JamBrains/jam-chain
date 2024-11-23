@@ -8,4 +8,9 @@ defmodule PhoenixAppWeb.EventController do
     num = length(events)
     render(conn, "index.html", events: events, num_events: num)
   end
+
+  def show(conn, %{"id" => id}) do
+    event = Events.get_event!(id)
+    render(conn, "show.html", event: event)
+  end
 end
