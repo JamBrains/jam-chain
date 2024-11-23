@@ -1,8 +1,11 @@
 defmodule PhoenixAppWeb.PageController do
   use PhoenixAppWeb, :controller
 
+  alias PhoenixApp.Events
+
   def index(conn, _params) do
-    render(conn, "index.html")
+    events = Events.list_events()
+    render(conn, "index.html", events: events)
   end
 
   def spec(conn, _params) do

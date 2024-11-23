@@ -10,18 +10,38 @@
   <div class="max-w-4xl mx-auto px-4">
     <article class="text-center py-8">
       <div class="flex flex-col space-y-4">
-        <%= for event <- @events do %>
-          <%= link to: hd(event.links), class: "block w-full" do %>
+        <%= for event <- Enum.reject(@events, & &1.historic) do %>
+          <%= link to: Routes.event_path(@conn, :show, event), class: "block w-full" do %>
             <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300">
               <div class="p-6">
                 <h2 class="text-xl font-semibold mb-2 text-gray-100"><%= event.name %></h2>
-                <p class="text-sm text-gray-400 mb-2"><%= event.where %> <%= event.when_from %> - <%= event.when_to %></p>
-                <p class="text-gray-300"><%= event.description %></p>
+                <p class="text-sm text-gray-400 mb-2"><%= event.where %> · <%= fmt_when(event) %></p>
+                <p class="text-gray-300"><%= event.short %></p>
               </div>
             </div>
           <% end %>
         <% end %>
       </div>
     </article>
+
+    <%= if Enum.any?(@events, & &1.historic) do %>
+      <h3 class="text-xl font-semibold text-gray-400 text-center mb-8">Past Events</h3>
+      
+      <article class="text-center">
+        <div class="flex flex-col space-y-4">
+          <%= for event <- Enum.filter(@events, & &1.historic) do %>
+            <%= link to: Routes.event_path(@conn, :show, event), class: "block w-full" do %>
+              <div class="bg-gray-800/50 shadow-lg rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                <div class="p-6">
+                  <h2 class="text-xl font-semibold mb-2 text-gray-300"><%= event.name %></h2>
+                  <p class="text-sm text-gray-500 mb-2"><%= event.where %> · <%= fmt_when(event) %></p>
+                  <p class="text-gray-400"><%= event.short %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
   </div>
 </section>

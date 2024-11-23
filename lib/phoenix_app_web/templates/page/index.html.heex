@@ -44,18 +44,24 @@
       </p>
     </article>
     
-    <article class="py-12">
-    <h2 class="text-2xl font-semibold mb-4 text-white">NEWS</h2>
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-      <div class="mt-4 bg-gray-800 rounded-lg shadow-md p-6">
-        <h3 class="text-l font-semibold text-white mb-3">
-          <i>JAM0</i> Meetup Proposal
-        </h3>
-        <p class="text-gray-300 mb-4">
-          An OpenGov proposal is up for vote to decide whether to fund a meetup at Devcon 7, where JAM implementor teams can collaborate.
-        </p>
-        <%= link "Read more", to: "https://polkadot.polkassembly.io/referenda/1024", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>
-      </div>
+  <article class="py-12">
+    <h2 class="text-2xl font-semibold mb-4 text-white">
+      <%= link "EVENTS", to: Routes.event_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
+    </h2>
+    <div class="flex flex-col space-y-4">
+      <%= for event <- @events do %>
+        <%= link to: Routes.event_path(@conn, :show, event), class: "block w-full" do %>
+          <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-gray-100">
+                <%= event.name %>
+              </h3>
+              <p class="text-sm text-gray-400 mb-2"><%= event.where %> · <%= PhoenixAppWeb.EventView.fmt_when(event) %></p>
+              <p class="text-gray-300 mb-4"><%= event.short %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </article>
   </div>

@@ -7,4 +7,6 @@ defmodule PhoenixApp.Events do
   def list_events do
     Repo.all(from e in Event, order_by: :name)
   end
+
+  def get_event!(id), do: Repo.get!(Event, id)
 end
