@@ -23,6 +23,8 @@ Repo.insert!(%Event{
   short: "Implementor meetup and tour of the JAM toaster.",
   long: """
   This event is currently being planned. Make sure to join the [0](Matrix chat) for updates.
+
+  Highlights are to see the Polkadot Palace and the JAM toaster. Otherwise opportunities to network and collaborate with other JAM implementors.
   """,
   links: ["https://app.element.io/#/room/!KKOmuUpvYKPcniwOzw:matrix.org"],
   contact: [],
