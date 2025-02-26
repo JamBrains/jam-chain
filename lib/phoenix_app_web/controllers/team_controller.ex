@@ -4,11 +4,18 @@ defmodule PhoenixAppWeb.TeamController do
   alias PhoenixApp.Teams
   alias PhoenixApp.Teams.Team
 
-  def index(conn, _params) do
+  def index(conn, params) do
+    sort_by = params["sort"] || "name"
+    sort_order = params["order"] || "asc"
+
     teams = Teams.list_teams()
-    num = length(teams)
-    render(conn, "index.html", teams: teams, num_teams: num)
+      |> Enum.sort_by(&Map.get(&1, String.to_atom(sort_by)), &sort_compare(&1, &2, sort_order))
+
+    render(conn, "index.html", teams: teams, sort_by: sort_by, sort_order: sort_order)
   end
+
+  defp sort_compare(a, b, "asc"), do: a <= b
+  defp sort_compare(a, b, "desc"), do: a >= b
 
   def new(conn, _params) do
     changeset = Teams.change_team(%Team{})
