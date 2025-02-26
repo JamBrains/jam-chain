@@ -15,17 +15,55 @@
       <p class="text-gray-300 mb-6">
         The following projects are currently in development:
       </p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <%= for team <- @teams do %>
-          <%= link to: Routes.team_path(@conn, :show, team), class: "block" do %>
-            <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 h-full">
-              <div class="p-4">
-                <h2 class="text-lg font-semibold mb-1 text-gray-100"><%= team.name %></h2>
-                <p class="text-sm text-gray-400"><%= team.lang %></p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-gray-700">
+                <%= link to: Routes.team_path(@conn, :index, sort: "name", order: sort_order("name", @sort_by, @sort_order)), class: "flex items-center group" do %>
+                  <span>Team Name</span>
+                  <span class="ml-2">
+                    <%= if @sort_by == "name" do %>
+                      <%= if @sort_order == "asc" do %>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                      <% else %>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                      <% end %>
+                    <% else %>
+                      <svg class="w-4 h-4 opacity-0 group-hover:opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                    <% end %>
+                  </span>
+                <% end %>
+              </th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-gray-700">
+                <%= link to: Routes.team_path(@conn, :index, sort: "lang", order: sort_order("lang", @sort_by, @sort_order)), class: "flex items-center group" do %>
+                  <span>Language</span>
+                  <span class="ml-2">
+                    <%= if @sort_by == "lang" do %>
+                      <%= if @sort_order == "asc" do %>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                      <% else %>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                      <% end %>
+                    <% else %>
+                      <svg class="w-4 h-4 opacity-0 group-hover:opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                    <% end %>
+                  </span>
+                <% end %>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-700">
+            <%= for team <- @teams do %>
+              <%= link to: Routes.team_path(@conn, :show, team), class: "block hover:bg-gray-700 transition-colors duration-200" do %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100"><%= team.name %></td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><%= team.lang %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
       <div class="mt-8">
         <%= link "Get Listed", to: "https://github.com/w3f-webops/graypaper-website/issues/new?assignees=&labels=&projects=&template=client-listing-request.md&title=Client+Listing%3A+XYZ", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 ease-in-out", target: "_blank" %>
