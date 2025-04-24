@@ -27,11 +27,10 @@
     </article>
 
     <article class="py-12">
-      <h2 class="text-2xl font-semibold mb-4 text-white">CLIENTS</h2>
+      <h2 class="text-2xl font-semibold mb-4 text-white">COMMUNITY</h2>
       <p class="text-xl text-gray-300">
-        Different <%= link "teams", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %> are working on client implementations for the JAM
-        chain in parallel. The goal is to achieve client diversity from day one
-        to facilitate network stability and ensure unambiguity of the spec.
+        Different <%= link "teams", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %> building JAM in parallel. The goal is to achieve client diversity from day one to facilitate network stability and ensure unambiguity of the spec. <br>
+        Join <%= link "our chats", to: "https://docs.jamcha.in/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> or read the <%= link "the archives", to: "https://paritytech.github.io/matrix-archiver/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> for the latest news.
       </p>
     </article>
 
@@ -43,26 +42,5 @@
         atomic composability across shards.<br/>While <i>sharing</i> - not <i>sharding</i> - security.
       </p>
     </article>
-    
-  <article class="py-12">
-    <h2 class="text-2xl font-semibold mb-4 text-white">
-      <%= link "EVENTS", to: Routes.event_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
-    </h2>
-    <div class="flex flex-col space-y-4">
-      <%= for event <- @events do %>
-        <%= link to: Routes.event_path(@conn, :show, event), class: "block w-full" do %>
-          <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300">
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2 text-gray-100">
-                <%= event.name %>
-              </h3>
-              <p class="text-sm text-gray-400 mb-2"><%= event.where %> · <%= PhoenixAppWeb.EventView.fmt_when(event) %></p>
-              <p class="text-gray-300 mb-4"><%= event.short %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </article>
   </div>
 </section>
