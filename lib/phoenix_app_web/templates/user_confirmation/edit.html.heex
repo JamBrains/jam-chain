@@ -1,12 +1,16 @@
-<h1>Confirm account</h1>
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Account</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Confirm account</h1>
 
-<.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
-  <div>
-    <%= submit "Confirm my account" %>
-  </div>
-</.form>
+  <.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
+    <div>
+      <%= submit "Confirm my account", class: "btn-primary w-full" %>
+    </div>
+  </.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+  <p class="mt-6 text-center text-sm text-ink-faint">
+    <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+    &middot;
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+  </p>
+</div>

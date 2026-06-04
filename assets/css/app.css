@@ -1,34 +1,88 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* This file is for your main application CSS */
+/* JAM Chain design system — warm-black monochrome.
+ * Palette + type tokens live in tailwind.config.js. */
 
-/* Alerts and form errors used by phx.new */
+@layer base {
+  ::selection {
+    background-color: theme(colors.ink.DEFAULT);
+    color: theme(colors.bg);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid theme(colors.ink.faint);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* <details> disclosure used for the mobile nav */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Buttons — monochrome pills (white primary, hairline ghost) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-stone-300;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line-strong px-6 py-3 text-sm font-medium text-ink-dim transition-colors hover:border-ink-faint hover:text-ink;
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  /* In-text link — monochrome underline */
+  .link-ink {
+    @apply font-medium text-ink underline decoration-stone-600 underline-offset-4 transition-colors hover:decoration-stone-300;
+  }
+
+  /* Hairline cards */
+  .card {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:border-line-strong hover:bg-surface-2/60;
+  }
+
+  /* Mono section label */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-ink-faint;
+  }
+
+  /* Server-rendered rich text (event descriptions) — style bare anchors */
+  .rich-text {
+    @apply leading-relaxed text-ink-mute;
+  }
+  .rich-text a {
+    @apply font-medium text-ink underline decoration-stone-600 underline-offset-4 transition-colors hover:decoration-stone-300;
+  }
+
+  /* Hero atmosphere — ultra-subtle radial washes */
+  .glow-top {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(250, 250, 249, 0.07), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 85% 0%, rgba(214, 211, 209, 0.04), transparent 60%);
+  }
+}
+
+/* Flash alerts (rendered by layout/app.html.heex and layout/live.html.heex) */
 .alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  @apply mx-auto mt-6 w-[calc(100%-2rem)] max-w-3xl rounded-xl border px-4 py-3 text-sm;
 }
 .alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  @apply border-line-strong bg-surface text-ink-dim;
 }
 .alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
+  @apply border-stone-600 bg-surface text-stone-300;
 }
 .alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+  @apply border-red-900/60 bg-red-950/40 text-red-200;
 }
 .alert p {
   margin-bottom: 0;
@@ -37,9 +91,7 @@
   display: none;
 }
 .invalid-feedback {
-  color: #a94442;
-  display: block;
-  margin: -1rem 0 2rem;
+  @apply mt-2 block text-sm text-red-300;
 }
 
 /* LiveView specific classes for your customization */
@@ -53,42 +105,44 @@
   transition: opacity 1s ease-out;
 }
 
-.phx-loading{
+.phx-loading {
   cursor: wait;
 }
 
 .phx-modal {
-  opacity: 1!important;
+  opacity: 1 !important;
   position: fixed;
-  z-index: 1;
+  z-index: 50;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .phx-modal-content {
-  background-color: #fefefe;
-  margin: 15vh auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  @apply card mx-auto my-[15vh] w-[min(80%,40rem)] p-6 text-ink-dim shadow-2xl;
 }
 
 .phx-modal-close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  @apply float-right cursor-pointer text-2xl font-bold text-ink-faint hover:text-ink;
+  text-decoration: none;
 }
 
-.phx-modal-close:hover,
-.phx-modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+/* Entrance animation — hero load moment (no-op when reduced motion is set) */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    animation: 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0s both fade-up-keys;
+  }
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.2s; }
+  .fade-up-3 { animation-delay: 0.3s; }
+}
+
+@keyframes fade-up-keys {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-scale {
@@ -125,4 +179,3 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
-

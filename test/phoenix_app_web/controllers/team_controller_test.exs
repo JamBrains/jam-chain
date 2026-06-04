@@ -3,14 +3,27 @@ defmodule PhoenixAppWeb.TeamControllerTest do
 
   import PhoenixApp.TeamsFixtures
 
-  @create_attrs %{description: "some description", homepage: "some homepage", name: "some name"}
+  @create_attrs %{
+    description: "some description",
+    homepage: "some homepage",
+    name: "some name",
+    lang: "some lang",
+    lang_set: "some lang_set",
+    milestone: 0,
+    contact: ["some contact"]
+  }
   @update_attrs %{description: "some updated description", homepage: "some updated homepage", name: "some updated name"}
   @invalid_attrs %{description: nil, homepage: nil, name: nil}
 
+  setup :register_and_log_in_user
+
   describe "index" do
     test "lists all teams", %{conn: conn} do
+      team = team_fixture()
       conn = get(conn, Routes.team_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Teams"
+      response = html_response(conn, 200)
+      assert response =~ "Client implementations"
+      assert response =~ team.name
     end
   end
 
@@ -29,7 +42,7 @@ defmodule PhoenixAppWeb.TeamControllerTest do
       assert redirected_to(conn) == Routes.team_path(conn, :show, id)
 
       conn = get(conn, Routes.team_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Team"
+      assert html_response(conn, 200) =~ "some name"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

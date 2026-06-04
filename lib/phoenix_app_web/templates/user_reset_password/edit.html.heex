@@ -1,26 +1,34 @@
-<h1>Reset password</h1>
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Account</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Reset password</h1>
 
-<.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+  <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)} class="space-y-6">
+    <%= if @changeset.action do %>
+      <div class="rounded-xl border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-200" role="alert">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+    <div>
+      <%= label f, :password, "New password", class: "mb-2 block text-sm font-medium text-ink-dim" %>
+      <%= password_input f, :password, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
+      <%= error_tag f, :password %>
     </div>
-  <% end %>
 
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+    <div>
+      <%= label f, :password_confirmation, "Confirm new password", class: "mb-2 block text-sm font-medium text-ink-dim" %>
+      <%= password_input f, :password_confirmation, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
+      <%= error_tag f, :password_confirmation %>
+    </div>
 
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
+    <div>
+      <%= submit "Reset password", class: "btn-primary w-full" %>
+    </div>
+  </.form>
 
-  <div>
-    <%= submit "Reset password" %>
-  </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+  <p class="mt-6 text-center text-sm text-ink-faint">
+    <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+    &middot;
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+  </p>
+</div>

@@ -1,27 +1,34 @@
-<div class="max-w-md mx-auto mt-8 px-4">
-  <h1 class="text-3xl font-bold mb-6">Register</h1>
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Account</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Register</h1>
+
   <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)} class="space-y-6">
     <%= if @changeset.action do %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <div class="rounded-xl border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-200" role="alert">
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
+
     <div>
-      <%= label f, :email, class: "block text-sm font-medium text-white" %>
-      <%= email_input f, :email, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      <%= label f, :email, class: "mb-2 block text-sm font-medium text-ink-dim" %>
+      <%= email_input f, :email, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
       <%= error_tag f, :email %>
     </div>
+
     <div>
-      <%= label f, :password, class: "block text-sm font-medium text-white" %>
-      <%= password_input f, :password, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      <%= label f, :password, class: "mb-2 block text-sm font-medium text-ink-dim" %>
+      <%= password_input f, :password, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
       <%= error_tag f, :password %>
     </div>
+
     <div>
-      <%= submit "Register", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= submit "Register", class: "btn-primary w-full" %>
     </div>
   </.form>
-  <p class="mt-6 text-center text-sm text-gray-600">
-    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "font-medium text-indigo-600 hover:text-indigo-500" %> |
-    <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+
+  <p class="mt-6 text-center text-sm text-ink-faint">
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+    &middot;
+    <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
   </p>
 </div>

@@ -1,113 +1,111 @@
-<section class="w-full bg-gray-800 py-12 px-4 text-center">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-4 text-white">CLIENTS</h2>
-    <p class="text-xl text-gray-300">
+<%!-- Page header --%>
+<section class="relative overflow-hidden">
+  <div class="glow-top pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-3xl px-4 pb-10 pt-16 text-center sm:px-6 md:pb-14 md:pt-24">
+    <p class="eyebrow">Clients</p>
+    <h1 class="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink md:text-5xl">Client implementations</h1>
+    <p class="mx-auto mt-5 max-w-xl text-balance leading-relaxed text-ink-mute">
       Client diversity is important for a robust network.
       Having multiple independent implementations makes
       it less likely for a large portion of the network to be affected
       by the same bug.
     </p>
+    <div class="mt-8">
+      <%= link to: "https://github.com/w3f-webops/graypaper-website/issues/new?assignees=&labels=&projects=&template=client-listing-request.md&title=Client+Listing%3A+XYZ", target: "_blank", rel: "noopener noreferrer", class: "btn-primary" do %>
+        Get Listed <span aria-hidden="true">&#8599;</span>
+      <% end %>
+    </div>
   </div>
 </section>
-<section class="w-full py-16 bg-gray-900">
-  <div class="max-w-4xl mx-auto px-4">
-    <article class="text-center">
-      <div class="mb-8">
-        <%= link "Get Listed", to: "https://github.com/w3f-webops/graypaper-website/issues/new?assignees=&labels=&projects=&template=client-listing-request.md&title=Client+Listing%3A+XYZ", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 ease-in-out", target: "_blank" %>
-      </div>
-      <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg border border-gray-700">
-        <div class="flex flex-col sm:flex-row justify-around items-center text-center">
-          <div class="mb-6 sm:mb-0">
-            <p class="text-4xl font-bold text-white"><%= length(@teams) %></p>
-            <p class="text-lg text-gray-400 mt-1">Total Teams</p>
-          </div>
-          <div class="hidden sm:block w-px h-16 bg-gray-700"></div>
-          <div>
-            <p class="text-4xl font-bold text-white"><%= @teams |> Enum.map(&(&1.lang)) |> Enum.uniq() |> length() %></p>
-            <p class="text-lg text-gray-400 mt-1">Unique Programming Languages</p>
-          </div>
-        </div>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
-          <thead>
-            <tr>
-              <th class="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-gray-700">
-                <%= link to: Routes.team_path(@conn, :index, sort: "name", order: sort_order("name", @sort_by, @sort_order)), class: "flex items-center justify-center group" do %>
-                  <span>Team Name</span>
-                  <span class="ml-2">
-                    <%= if @sort_by == "name" do %>
-                      <%= if @sort_order == "asc" do %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                      <% else %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                      <% end %>
-                    <% else %>
-                      <svg class="w-4 h-4 opacity-0 group-hover:opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                    <% end %>
-                  </span>
+
+<section class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+  <%!-- Stats --%>
+  <div class="card grid grid-cols-1 divide-y divide-line overflow-hidden sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+    <div class="px-8 py-8 text-center">
+      <p class="font-mono text-4xl font-semibold tracking-tight text-ink"><%= length(@teams) %></p>
+      <p class="eyebrow mt-3">Total teams</p>
+    </div>
+    <div class="px-8 py-8 text-center">
+      <p class="font-mono text-4xl font-semibold tracking-tight text-ink"><%= @teams |> Enum.map(&(&1.lang)) |> Enum.uniq() |> length() %></p>
+      <p class="eyebrow mt-3">Programming languages</p>
+    </div>
+  </div>
+
+  <%!-- Teams table --%>
+  <div class="card mt-6 overflow-x-auto">
+    <table class="min-w-full text-sm">
+      <thead>
+        <tr class="border-b border-line">
+          <th class="px-6 py-4 text-left font-normal">
+            <%= link to: Routes.team_path(@conn, :index, sort: "name", order: sort_order("name", @sort_by, @sort_order)), class: "group inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-ink-faint transition-colors hover:text-ink-mute" do %>
+              <span>Team Name</span>
+              <%= if @sort_by == "name" do %>
+                <%= if @sort_order == "asc" do %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                <% else %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 <% end %>
-              </th>
-              <th class="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-gray-700">
-                <%= link to: Routes.team_path(@conn, :index, sort: "lang", order: sort_order("lang", @sort_by, @sort_order)), class: "flex items-center justify-center group" do %>
-                  <span>Language</span>
-                  <span class="ml-2">
-                    <%= if @sort_by == "lang" do %>
-                      <%= if @sort_order == "asc" do %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                      <% else %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                      <% end %>
-                    <% else %>
-                      <svg class="w-4 h-4 opacity-0 group-hover:opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                    <% end %>
-                  </span>
-                <% end %>
-              </th>
-              <th class="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-gray-700">
-                <%= link to: Routes.team_path(@conn, :index, sort: "lang_set", order: sort_order("lang_set", @sort_by, @sort_order)), class: "flex items-center justify-center group" do %>
-                  <span>Language Set</span>
-                  <span class="ml-2">
-                    <%= if @sort_by == "lang_set" do %>
-                      <%= if @sort_order == "asc" do %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                      <% else %>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                      <% end %>
-                    <% else %>
-                      <svg class="w-4 h-4 opacity-0 group-hover:opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                    <% end %>
-                  </span>
-                <% end %>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-700">
-            <%= for team <- @teams do %>
-              <%= link to: Routes.team_path(@conn, :show, team), class: "block hover:bg-gray-700 transition-colors duration-200" do %>
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100 text-center">
-                    <%= if not is_nil(team.homepage) and team.homepage != "" do %>
-                      <a href={team.homepage} target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors duration-200">
-                        <%= team.name %> ↗
-                      </a>
-                    <% else %>
-                      <%= team.name %>
-                    <% end %>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 text-center"><%= team.lang %></td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 text-center"><%= team.lang_set %></td>
-                </tr>
+              <% else %>
+                <svg class="h-3.5 w-3.5 opacity-0 group-hover:opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
               <% end %>
             <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="mt-8">
-        <%= if PhoenixAppWeb.UserAuth.authenticated?(@conn) do %>
-          <%= link "New Team", to: Routes.team_path(@conn, :new), class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 ease-in-out" %>
+          </th>
+          <th class="px-6 py-4 text-left font-normal">
+            <%= link to: Routes.team_path(@conn, :index, sort: "lang", order: sort_order("lang", @sort_by, @sort_order)), class: "group inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-ink-faint transition-colors hover:text-ink-mute" do %>
+              <span>Language</span>
+              <%= if @sort_by == "lang" do %>
+                <%= if @sort_order == "asc" do %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                <% else %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <% end %>
+              <% else %>
+                <svg class="h-3.5 w-3.5 opacity-0 group-hover:opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+              <% end %>
+            <% end %>
+          </th>
+          <th class="px-6 py-4 text-left font-normal">
+            <%= link to: Routes.team_path(@conn, :index, sort: "lang_set", order: sort_order("lang_set", @sort_by, @sort_order)), class: "group inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-ink-faint transition-colors hover:text-ink-mute" do %>
+              <span>Language Set</span>
+              <%= if @sort_by == "lang_set" do %>
+                <%= if @sort_order == "asc" do %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                <% else %>
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <% end %>
+              <% else %>
+                <svg class="h-3.5 w-3.5 opacity-0 group-hover:opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+              <% end %>
+            <% end %>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-line">
+        <%= for team <- @teams do %>
+          <tr class="group transition-colors hover:bg-surface-2/40">
+            <td class="p-0">
+              <div class="flex items-center gap-2 px-6 py-4">
+                <%= link team.name, to: Routes.team_path(@conn, :show, team), class: "font-medium text-ink-dim transition-colors group-hover:text-ink" %>
+                <%= if not is_nil(team.homepage) and team.homepage != "" do %>
+                  <a href={team.homepage} target="_blank" rel="noopener noreferrer" class="text-ink-faint transition-colors hover:text-ink" aria-label={"#{team.name} homepage"}>&#8599;</a>
+                <% end %>
+              </div>
+            </td>
+            <td class="p-0">
+              <%= link to: Routes.team_path(@conn, :show, team), class: "block px-6 py-4 font-mono text-xs text-ink-mute", tabindex: "-1" do %><%= team.lang %><% end %>
+            </td>
+            <td class="p-0">
+              <%= link to: Routes.team_path(@conn, :show, team), class: "block px-6 py-4 font-mono text-xs text-ink-mute", tabindex: "-1" do %><%= team.lang_set %><% end %>
+            </td>
+          </tr>
         <% end %>
-      </div>
-    </article>
+      </tbody>
+    </table>
   </div>
+
+  <%= if PhoenixAppWeb.UserAuth.authenticated?(@conn) do %>
+    <div class="mt-6">
+      <%= link "New Team", to: Routes.team_path(@conn, :new), class: "btn-ghost" %>
+    </div>
+  <% end %>
 </section>

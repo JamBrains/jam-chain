@@ -13,7 +13,11 @@ defmodule PhoenixApp.TeamsFixtures do
       |> Enum.into(%{
         description: "some description",
         homepage: "some homepage",
-        name: "some name"
+        name: "some name",
+        lang: "some lang",
+        lang_set: "some lang_set",
+        milestone: 0,
+        contact: ["some contact"]
       })
       |> PhoenixApp.Teams.create_team()
 

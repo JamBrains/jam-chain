@@ -1,15 +1,21 @@
-<h1>Resend confirmation instructions</h1>
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Account</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Resend confirmation instructions</h1>
 
-<.form let={f} for={:user} action={Routes.user_confirmation_path(@conn, :create)}>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  <.form let={f} for={:user} action={Routes.user_confirmation_path(@conn, :create)} class="space-y-6">
+    <div>
+      <%= label f, :email, class: "mb-2 block text-sm font-medium text-ink-dim" %>
+      <%= email_input f, :email, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
+    </div>
 
-  <div>
-    <%= submit "Resend confirmation instructions" %>
-  </div>
-</.form>
+    <div>
+      <%= submit "Resend confirmation instructions", class: "btn-primary w-full" %>
+    </div>
+  </.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+  <p class="mt-6 text-center text-sm text-ink-faint">
+    <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+    &middot;
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "font-medium text-ink-mute transition-colors hover:text-ink" %>
+  </p>
+</div>

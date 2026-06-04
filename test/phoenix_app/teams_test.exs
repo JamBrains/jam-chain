@@ -21,12 +21,24 @@ defmodule PhoenixApp.TeamsTest do
     end
 
     test "create_team/1 with valid data creates a team" do
-      valid_attrs = %{description: "some description", homepage: "some homepage", name: "some name"}
+      valid_attrs = %{
+        description: "some description",
+        homepage: "some homepage",
+        name: "some name",
+        lang: "some lang",
+        lang_set: "some lang_set",
+        milestone: 0,
+        contact: ["some contact"]
+      }
 
       assert {:ok, %Team{} = team} = Teams.create_team(valid_attrs)
       assert team.description == "some description"
       assert team.homepage == "some homepage"
       assert team.name == "some name"
+      assert team.lang == "some lang"
+      assert team.lang_set == "some lang_set"
+      assert team.milestone == 0
+      assert team.contact == ["some contact"]
     end
 
     test "create_team/1 with invalid data returns error changeset" do

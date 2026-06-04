@@ -1,54 +1,50 @@
-<section class="w-full bg-gray-800 py-12 px-4 text-center">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-4 text-white">TECH</h2>
-    <p class="text-xl text-gray-300">
+<%!-- Page header --%>
+<section class="relative overflow-hidden">
+  <div class="glow-top pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-3xl px-4 pb-10 pt-16 text-center sm:px-6 md:pb-14 md:pt-24">
+    <p class="eyebrow">Tech</p>
+    <h1 class="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink md:text-5xl">The tech stack</h1>
+    <p class="mx-auto mt-5 max-w-xl text-balance leading-relaxed text-ink-mute">
       Basics of the JAM tech stack.
     </p>
   </div>
 </section>
-<section class="w-full bg-gray-900 text-center">
-  <div class="max-w-3xl mx-auto px-4 grid gap-4">
 
-  	<article class="py-20">
-      <p class="text-2xl text-gray-300 mb-4">
-        Sharding
-      </p>
-      <p class="text-xl text-gray-300 mt-4">
-	  	JAM allows rollups to change their execution shard boundaries dynamically on every block.
-		This gives unprecedented freedom to developers who can now atomically compose across shards.
-		It is achieved by splitting execution into two phases: <i>Accumulation</i> and <i>Refinement</i>.
-	  </p>
-    </article>
+<section class="mx-auto max-w-5xl px-4 sm:px-6">
+  <div class="divide-y divide-line">
 
-    <article class="py-20">
-      <p class="text-2xl text-gray-300 mb-4">
-        Execution
-      </p>
-      <p class="text-xl text-gray-300 mt-4">
-	  	JAM employs a Virtual Machine for a modified RISC-V instruction set: <%= link "PolkaVM", to: "https://github.com/koute/polkavm", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>. This enables smart contract developers to use the language of their choice, as long
-		as it can be compiled to RISC-V. Some obvious examples are Rust, <%= link "YUL", to: "https://github.com/xermicus/revive", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> (Solidity) or <%= link "C/C++", to: "https://github.com/JamBrains/polkavm-examples", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>. And yes, it can even run <%= link "Doom", to: "https://github.com/koute/polkadoom", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>.
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">01 &mdash; Sharding</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        JAM allows rollups to change their execution shard boundaries dynamically on every block.
+        This gives unprecedented freedom to developers who can now atomically compose across shards.
+        It is achieved by splitting execution into two phases: <i>Accumulation</i> and <i>Refinement</i>.
       </p>
     </article>
 
-	<article class="py-20">
-      <p class="text-2xl text-gray-300 mb-4">
-        Cryptography
-      </p>
-      <p class="text-xl text-gray-300 mt-4">
-	  	Researchers	from the Web3 Foundation and Parity have invented a novel ZK building block: <%= link "Ring VRF", to: "https://eprint.iacr.org/2023/002.pdf", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>. It combines two primitives: Ring Signatures and Verifiable Random Functions. The Ring property allows members to issue signatures
-		through a pseudonym without revealing their identity. The VRF ensures that some outputs
-		can be treated as sufficiently random for use in consensus algorithms.
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">02 &mdash; Execution</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        JAM employs a Virtual Machine for a modified RISC-V instruction set: <%= link "PolkaVM", to: "https://github.com/koute/polkavm", class: "link-ink", target: "_blank" %>. This enables smart contract developers to use the language of their choice, as long
+        as it can be compiled to RISC-V. Some obvious examples are Rust, <%= link "YUL", to: "https://github.com/xermicus/revive", class: "link-ink", target: "_blank" %> (Solidity) or <%= link "C/C++", to: "https://github.com/JamBrains/polkavm-examples", class: "link-ink", target: "_blank" %>. And yes, it can even run <%= link "Doom", to: "https://github.com/koute/polkadoom", class: "link-ink", target: "_blank" %>.
       </p>
     </article>
 
-	<article class="py-20">
-      <p class="text-2xl text-gray-300 mb-4">
-        Block Production
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">03 &mdash; Cryptography</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        Researchers from the Web3 Foundation and Parity have invented a novel ZK building block: <%= link "Ring VRF", to: "https://eprint.iacr.org/2023/002.pdf", class: "link-ink", target: "_blank" %>. It combines two primitives: Ring Signatures and Verifiable Random Functions. The Ring property allows members to issue signatures
+        through a pseudonym without revealing their identity. The VRF ensures that some outputs
+        can be treated as sufficiently random for use in consensus algorithms.
       </p>
-      <p class="text-xl text-gray-300 mt-4">
-	  	The Web3 Foundation and Parity developed the block production algorithm <%= link "SASSAFRAS", to: "https://github.com/polkadot-fellows/RFCs/pull/26", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>, of which a simplified version <i>SAFROLE</i> is used. It minimizes the
-		risk of forks and provides high quality entropy. The algorithm operates at a 6 second block time with about 18 second finality.
-	  </p>
+    </article>
+
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">04 &mdash; Block Production</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        The Web3 Foundation and Parity developed the block production algorithm <%= link "SASSAFRAS", to: "https://github.com/polkadot-fellows/RFCs/pull/26", class: "link-ink", target: "_blank" %>, of which a simplified version <i>SAFROLE</i> is used. It minimizes the
+        risk of forks and provides high quality entropy. The algorithm operates at a 6 second block time with about 18 second finality.
+      </p>
     </article>
 
   </div>

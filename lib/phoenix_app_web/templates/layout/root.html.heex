@@ -1,59 +1,127 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full dark">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#0f0f0f"/>
     <%= csrf_meta_tag() %>
     <!-- <%= live_title_tag assigns[:page_title] || "", prefix: "JAM Chain 🥁✨" %> -->
     <title>JAM Chain 🥁✨</title>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body class="flex flex-col min-h-full bg-gray-900 text-gray-100">
-    <header class="bg-gray-800 shadow-md">
-  <div class="container mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
-      <nav>
-        <ul class="flex space-x-4">
-          <li>
-            <%= link "Home", to: Routes.page_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
-          </li>
-          <li>
-            <%= link "Tech", to: Routes.page_path(@conn, :tech), class: "text-indigo-600 hover:text-blue-300" %>
-          </li>
-          <li>
-            <%= link "Spec", to: Routes.page_path(@conn, :spec), class: "text-indigo-600 hover:text-blue-300" %>
-          </li>
-          <li>
-            <%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %>
-          </li>
-          <li>
-            <%= link "Docs", to: "https://docs.jamcha.in/", class: "text-indigo-600 hover:text-blue-300" %>
-          </li>
-          <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-            <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-indigo-600 hover:text-blue-300" %></li>
-          <% end %>
-        </ul>
-      </nav>
-      <div class="flex items-center">
-        <%= render "_user_menu.html", assigns %>
-        <%= link "Chat", to: "https://paritytech.github.io/matrix-archiver/", class: "text-indigo-600 hover:text-blue-300" %>
-        <a href="https://github.com/JamBrains/jam-chain" target="_blank" rel="noopener noreferrer" class="ml-4">
-          <svg class="w-6 h-6 text-indigo-600 hover:text-blue-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-          </svg>
+  <body class="flex min-h-full flex-col bg-bg font-sans text-ink antialiased">
+    <header class="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-xl">
+      <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <a href={Routes.page_path(@conn, :index)} class="-my-2 flex shrink-0 items-center" aria-label="JAM — home">
+          <img src={Routes.static_path(@conn, "/images/jam-pen-back.webp")} alt="JAM" class="h-12 w-auto"/>
         </a>
+
+        <nav class="hidden md:block" aria-label="Main">
+          <ul class="flex items-center gap-7">
+            <li><%= link "Tech", to: Routes.page_path(@conn, :tech), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
+            <li><%= link "Spec", to: Routes.page_path(@conn, :spec), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
+            <li><%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
+            <li><%= link "Events", to: Routes.event_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
+            <li>
+              <%= link to: "https://docs.jamcha.in/", target: "_blank", rel: "noopener noreferrer", class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
+                Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+              <% end %>
+            </li>
+            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-sm text-ink-faint transition-colors hover:text-ink" %></li>
+            <% end %>
+          </ul>
+        </nav>
+
+        <div class="hidden items-center gap-6 md:flex">
+          <%= render "_user_menu.html", assigns %>
+          <%= link to: "https://paritytech.github.io/matrix-archiver/", target: "_blank", rel: "noopener noreferrer", class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
+            Chat <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+          <% end %>
+          <a href="https://github.com/JamBrains/jam-chain" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-ink-mute transition-colors hover:text-ink">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+
+        <details class="relative md:hidden">
+          <summary class="flex cursor-pointer list-none items-center p-2 -mr-2 text-ink-mute transition-colors hover:text-ink" aria-label="Menu">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+          </summary>
+          <div class="card absolute right-0 top-full z-50 mt-3 w-60 p-2 shadow-2xl shadow-black/50">
+            <nav aria-label="Mobile">
+              <ul class="flex flex-col">
+                <li><%= link "Tech", to: Routes.page_path(@conn, :tech), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
+                <li><%= link "Spec", to: Routes.page_path(@conn, :spec), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
+                <li><%= link "Clients", to: Routes.team_path(@conn, :index), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
+                <li><%= link "Events", to: Routes.event_path(@conn, :index), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
+                <li class="my-2 border-t border-line" role="presentation"></li>
+                <li>
+                  <%= link to: "https://docs.jamcha.in/", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>
+                    Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link to: "https://paritytech.github.io/matrix-archiver/", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>
+                    Chat <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link to: "https://github.com/JamBrains/jam-chain", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>
+                    GitHub <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+                  <% end %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </details>
       </div>
-    </div>
-  </div>
-</header>
+    </header>
+
     <main class="flex-grow">
       <%= @inner_content %>
     </main>
-    <footer class="bg-gray-800 py-4 mt-8">
-      <div class="container mx-auto px-4 text-center text-indigo-600">
-        <a href="https://creativecommons.org/licenses/by-sa/4.0/">License CC BY-SA 4.0</a>
+
+    <footer class="mt-24 border-t border-line">
+      <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div class="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          <div class="max-w-xs space-y-4">
+            <img src={Routes.static_path(@conn, "/images/jam-pen-back.webp")} alt="JAM" class="h-14 w-auto"/>
+            <p class="text-sm leading-relaxed text-ink-faint">
+              The Join Accumulate Machine &mdash; a trustless supercomputer designed as successor to the Polkadot Relay Chain.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-12 sm:gap-20">
+            <div>
+              <p class="eyebrow mb-5">Site</p>
+              <ul class="space-y-3 text-sm">
+                <li><%= link "Tech", to: Routes.page_path(@conn, :tech), class: "text-ink-mute transition-colors hover:text-ink" %></li>
+                <li><%= link "Spec", to: Routes.page_path(@conn, :spec), class: "text-ink-mute transition-colors hover:text-ink" %></li>
+                <li><%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-ink-mute transition-colors hover:text-ink" %></li>
+                <li><%= link "Events", to: Routes.event_path(@conn, :index), class: "text-ink-mute transition-colors hover:text-ink" %></li>
+              </ul>
+            </div>
+            <div>
+              <p class="eyebrow mb-5">Ecosystem</p>
+              <ul class="space-y-3 text-sm">
+                <li><a href="https://graypaper.com/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Graypaper <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+                <li><a href="https://docs.jamcha.in/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+                <li><a href="https://jam.web3.foundation/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">W3F Prize <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+                <li><a href="https://github.com/JamBrains/jam-chain" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">GitHub <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+                <li><a href="https://paritytech.github.io/matrix-archiver/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Chat <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-14 flex flex-col gap-2 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+          <p class="font-mono uppercase tracking-[0.2em]">JAM Chain</p>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="transition-colors hover:text-ink-mute">License CC BY-SA 4.0</a>
+        </div>
       </div>
     </footer>
   </body>

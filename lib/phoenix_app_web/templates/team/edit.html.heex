@@ -1,9 +1,12 @@
-<div class="max-w-2xl mx-auto mt-8 px-4">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">Edit Team</h1>
-  
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Clients</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Edit Team</h1>
+
   <%= render "form.html", Map.put(assigns, :action, Routes.team_path(@conn, :update, @team)) %>
-  
-  <div class="mt-6">
-    <%= link "Back", to: Routes.team_path(@conn, :index), class: "text-blue-600 hover:text-blue-800 hover:underline" %>
+
+  <div class="mt-8">
+    <%= link to: Routes.team_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
+      <span aria-hidden="true">&larr;</span> Back
+    <% end %>
   </div>
 </div>

@@ -1,131 +1,122 @@
-<main class="min-h-screen bg-gray-900">
-  <section class="w-full bg-gray-800 py-12 px-4">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row gap-8 items-center justify-between">
-        <div class="space-y-4">
-          <h1 class="text-4xl font-bold text-white"><%= @event.name %></h1>
-          <%= if @event.short do %>
-            <p class="text-xl text-gray-300"><%= @event.short %></p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </section>
+<%!-- Event header --%>
+<section class="relative overflow-hidden">
+  <div class="glow-top pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-5xl px-4 pb-10 pt-16 sm:px-6 md:pb-12 md:pt-20">
+    <p class="eyebrow">Event</p>
+    <h1 class="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink md:text-5xl"><%= @event.name %></h1>
+    <%= if @event.short do %>
+      <p class="mt-5 max-w-2xl text-balance text-lg leading-relaxed text-ink-mute"><%= @event.short %></p>
+    <% end %>
+  </div>
+</section>
 
-  <%= if @event.historic do %>
-    <div class="w-full bg-amber-900/50 py-3 px-4">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex items-center justify-center gap-2 text-amber-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-          </svg>
-          <p>This event already happened and is shown for archival purposes only.</p>
-        </div>
-      </div>
+<%= if @event.historic do %>
+  <div class="w-full border-y border-line bg-surface px-4 py-3">
+    <div class="mx-auto flex max-w-5xl items-center justify-center gap-2 text-sm text-ink-mute">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-ink-faint" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      <p>This event already happened and is shown for archival purposes only.</p>
     </div>
-  <% end %>
+  </div>
+<% end %>
 
-  <section class="w-full py-16">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <%# Main Content %>
-        <div class="md:col-span-2 space-y-8">
-          <div class="bg-gray-800 rounded-lg p-6 space-y-6">
+<section class="w-full py-10 md:py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <%!-- Main Content --%>
+      <div class="space-y-6 md:col-span-2">
+        <div class="card p-6 md:p-8">
+          <h2 class="text-xl font-semibold tracking-tight text-ink">About this event</h2>
+          <div class="rich-text mt-4">
+            <%= raw(fmt_desc(@event)) %>
+          </div>
+        </div>
+
+        <%!-- Contact Information --%>
+        <%= if @event.contact && length(@event.contact) > 0 do %>
+          <div class="card p-6 md:p-8">
+            <h3 class="text-xl font-semibold tracking-tight text-ink">Contact</h3>
+            <div class="mt-4 space-y-2">
+              <%= for contact <- @event.contact do %>
+                <p class="font-mono text-sm text-ink-mute"><%= contact %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= if @event.links && length(@event.links) > 0 do %>
+          <div class="card p-6 md:p-8">
+            <h3 class="text-xl font-semibold tracking-tight text-ink">Related links</h3>
+            <div class="mt-4 space-y-2">
+              <%= for {link, index} <- Enum.with_index(@event.links) do %>
+                <div class="flex items-baseline gap-3">
+                  <span class="min-w-[1.5rem] font-mono text-xs text-ink-faint"><%= index + 1 %></span>
+                  <%= link link,
+                    to: link,
+                    class: "break-all text-sm text-ink-mute underline decoration-stone-600 underline-offset-4 transition-colors hover:text-ink hover:decoration-stone-300",
+                    target: "_blank" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%!-- Sidebar --%>
+      <div class="space-y-6">
+        <div class="card space-y-5 p-6">
+          <%!-- Date Information --%>
+          <div class="flex items-start gap-3">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
             <div>
-              <h2 class="text-2xl font-semibold text-white mb-4">About This Event</h2>
-              <div class="prose prose-invert max-w-none">
-                <%= raw(fmt_desc(@event)) %>
-              </div>
-            </div>
-          </div>
-
-          <%# Contact Information %>
-          <%= if @event.contact && length(@event.contact) > 0 do %>
-            <div class="bg-gray-800 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
-              <div class="space-y-2">
-                <%= for contact <- @event.contact do %>
-                  <p class="text-gray-300"><%= contact %></p>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-
-          <%= if @event.links && length(@event.links) > 0 do %>
-            <div class="bg-gray-800 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-white mb-4">Related Links</h3>
-              <div class="space-y-2">
-                <%= for {link, index} <- Enum.with_index(@event.links) do %>
-                  <div class="flex items-center gap-2">
-                    <span class="text-gray-400 min-w-[1.5rem]"><%= index + 1 %>:</span>
-                    <%= link link, 
-                      to: link, 
-                      class: "text-blue-400 hover:text-blue-300",
-                      target: "_blank" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-        <%# Sidebar %>
-        <div class="space-y-6">
-          <div class="bg-gray-800 rounded-lg p-6 space-y-4">
-            <%# Date Information %>
-            <div class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <div>
-                <p class="text-gray-400">Date</p>
-                <%= if @event.when_from do %>
-                  <p class="text-white">
-                    <%= Calendar.strftime(@event.when_from, "%B %d, %Y") %>
-                    <%= if @event.when_to && @event.when_to != @event.when_from do %>
-                      - <%= Calendar.strftime(@event.when_to, "%B %d, %Y") %>
-                    <% end %>
-                    <%= fmt_duration(@event) %>
-                  </p>
-                <% end %>
-                <%= if @event.when_est do %>
-                  <p class="text-gray-300 text-sm mt-1">
-                    <%= @event.when_est %> <%= fmt_duration(@event) %>
-                  </p>
-                <% end %>
-              </div>
-            </div>
-
-            <%# Location %>
-            <div class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <div>
-                <p class="text-gray-400">Location</p>
-                <%= if @event.where_link do %>
-                  <%= link to: @event.where_link, class: "text-white hover:text-blue-300" do %>
-                    <%= @event.where %>
-                    <span class="ml-1">↗</span>
+              <p class="eyebrow">Date</p>
+              <%= if @event.when_from do %>
+                <p class="mt-1.5 text-sm text-ink-dim">
+                  <%= Calendar.strftime(@event.when_from, "%B %d, %Y") %>
+                  <%= if @event.when_to && @event.when_to != @event.when_from do %>
+                    &ndash; <%= Calendar.strftime(@event.when_to, "%B %d, %Y") %>
                   <% end %>
-                <% else %>
-                  <p class="text-white"><%= @event.where %></p>
-                <% end %>
-              </div>
+                  <%= fmt_duration(@event) %>
+                </p>
+              <% end %>
+              <%= if @event.when_est do %>
+                <p class="mt-1.5 text-sm text-ink-mute">
+                  <%= @event.when_est %> <%= fmt_duration(@event) %>
+                </p>
+              <% end %>
             </div>
           </div>
 
-          <%# Call to Action %>
-          <%= if @event.links && length(@event.links) > 0 do %>
-            <div class="bg-gray-800 rounded-lg p-6 text-center">
-              <%= link "Learn More", 
-                  to: Enum.at(@event.links, @event.learn_more_id), 
-                  class: "w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200" %>
+          <%!-- Location --%>
+          <div class="flex items-start gap-3">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div>
+              <p class="eyebrow">Location</p>
+              <%= if @event.where_link do %>
+                <%= link to: @event.where_link, class: "mt-1.5 inline-block text-sm text-ink-dim transition-colors hover:text-ink" do %>
+                  <%= @event.where %>
+                  <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+                <% end %>
+              <% else %>
+                <p class="mt-1.5 text-sm text-ink-dim"><%= @event.where %></p>
+              <% end %>
             </div>
-          <% end %>
+          </div>
         </div>
+
+        <%!-- Call to Action --%>
+        <%= if @event.links && length(@event.links) > 0 do %>
+          <%= link to: Enum.at(@event.links, @event.learn_more_id), target: "_blank", rel: "noopener noreferrer", class: "btn-primary w-full" do %>
+            Learn more <span aria-hidden="true">&#8599;</span>
+          <% end %>
+        <% end %>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>

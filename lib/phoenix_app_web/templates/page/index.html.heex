@@ -1,46 +1,101 @@
-<section class="w-full bg-gray-800 py-12 px-4 text-center">
-  <div class="max-w-3xl mx-auto">
-    <p class="text-xl text-gray-300">
-      <img src={Routes.static_path(@conn, "/images/jam-pen-back.webp")} alt="JAM logo" style="width:42%" class="inline-block"/>
+<%!-- Hero --%>
+<section class="relative overflow-hidden">
+  <div class="glow-top pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-4xl px-4 pb-20 pt-14 text-center sm:px-6 md:pb-28 md:pt-20">
+    <img
+      src={Routes.static_path(@conn, "/images/jam-pen-back.webp")}
+      alt="JAM, handwritten"
+      class="fade-up mx-auto -mb-4 w-64 md:-mb-8 md:w-80"
+    />
+    <h1 class="fade-up fade-up-1 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink md:text-6xl">
+      The Join Accumulate Machine
+    </h1>
+    <p class="fade-up fade-up-2 mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-ink-mute md:text-lg">
+      A successor to the Polkadot Relay Chain &mdash; specified in the graypaper, implemented by many.
     </p>
+    <div class="fade-up fade-up-3 mt-10 flex flex-wrap items-center justify-center gap-4">
+      <%= link to: Routes.page_path(@conn, :spec), class: "btn-primary" do %>
+        Read the Graypaper <span aria-hidden="true">&rarr;</span>
+      <% end %>
+      <%= link "Explore the tech", to: Routes.page_path(@conn, :tech), class: "btn-ghost" %>
+    </div>
   </div>
 </section>
-<section class="w-full py-16 bg-gray-900 text-center">
-  <div class="max-w-3xl mx-auto px-4 grid gap-16">
-  
-    <article class="py-12">
-      <h2 class="text-2xl font-semibold mb-4 text-white">INTRO</h2>
-      <p class="text-xl text-gray-300">
+
+<%!-- Stat band --%>
+<section class="border-y border-line">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+    <div class="px-8 py-10 text-center">
+      <p class="font-mono text-4xl font-semibold tracking-tight text-ink md:text-5xl">10M</p>
+      <p class="eyebrow mt-3">DOT prize pool</p>
+    </div>
+    <div class="px-8 py-10 text-center">
+      <p class="font-mono text-4xl font-semibold tracking-tight text-ink md:text-5xl"><%= @teams_count %></p>
+      <p class="eyebrow mt-3">Teams building</p>
+    </div>
+    <div class="px-8 py-10 text-center">
+      <p class="font-mono text-4xl font-semibold tracking-tight text-ink md:text-5xl">6s</p>
+      <p class="eyebrow mt-3">Block time</p>
+    </div>
+  </div>
+</section>
+
+<%!-- Next event teaser --%>
+<% upcoming = Enum.reject(@events, & &1.historic) %>
+<%= if upcoming != [] do %>
+  <% next_event = upcoming |> Enum.sort_by(&(&1.when_from || ~D[9999-12-31]), Date) |> List.first() %>
+  <section class="mx-auto max-w-5xl px-4 pt-12 sm:px-6">
+    <%= link to: Routes.event_path(@conn, :show, next_event), class: "block group" do %>
+      <div class="card card-hover flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-4">
+        <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span class="eyebrow">Next event</span>
+          <span class="text-sm font-medium text-ink-dim transition-colors group-hover:text-ink"><%= next_event.name %></span>
+          <span class="font-mono text-xs text-ink-faint"><%= next_event.where %> &middot; <%= PhoenixAppWeb.EventView.fmt_when(next_event) %></span>
+        </div>
+        <span class="text-ink-faint transition-colors group-hover:text-ink" aria-hidden="true">&rarr;</span>
+      </div>
+    <% end %>
+  </section>
+<% end %>
+
+<%!-- Editorial sections --%>
+<section class="mx-auto max-w-5xl px-4 sm:px-6">
+  <div class="divide-y divide-line">
+
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">01 &mdash; Intro</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
         The <i><b>J</b>oin <b>A</b>ccumulate <b>M</b>achine</i> was designed by top-notch blockchain researchers and is described
-        in the <%= link "graypaper", to: Routes.page_path(@conn, :spec), class: "text-indigo-600 hover:text-blue-300" %>.
+        in the <%= link "graypaper", to: Routes.page_path(@conn, :spec), class: "link-ink" %>.
         It aims at being a successor to the Polkadot Relay Chain and is currently being implemented by multiple teams.
       </p>
     </article>
 
-    <article class="py-12">
-      <h2 class="text-2xl font-semibold mb-4 text-white">PRIZE</h2>
-      <p class="text-xl text-gray-300">
-        A prize pool of 10 MILLION DOT is provided by the <%= link "w3f", to: "https://jam.web3.foundation/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %>
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">02 &mdash; Prize</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        A prize pool of 10 MILLION DOT is provided by the <%= link "w3f", to: "https://jam.web3.foundation/", class: "link-ink", target: "_blank" %>
         to incentivize multiple client implementations. This pool is spread over different language
         sets and up for grabs to anyone.
       </p>
     </article>
 
-    <article class="py-12">
-      <h2 class="text-2xl font-semibold mb-4 text-white">COMMUNITY</h2>
-      <p class="text-xl text-gray-300">
-        Different <%= link "teams", to: Routes.team_path(@conn, :index), class: "text-indigo-600 hover:text-blue-300" %> building JAM in parallel. The goal is to achieve client diversity from day one to facilitate network stability and ensure unambiguity of the spec. <br>
-        Join <%= link "our chats", to: "https://docs.jamcha.in/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> or read the <%= link "the archives", to: "https://paritytech.github.io/matrix-archiver/", class: "text-indigo-600 hover:text-blue-300", target: "_blank" %> for the latest news.
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">03 &mdash; Community</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        Different <%= link "teams", to: Routes.team_path(@conn, :index), class: "link-ink" %> building JAM in parallel. The goal is to achieve client diversity from day one to facilitate network stability and ensure unambiguity of the spec.<br>
+        Join <%= link "our chats", to: "https://docs.jamcha.in/", class: "link-ink", target: "_blank" %> or read the <%= link "the archives", to: "https://paritytech.github.io/matrix-archiver/", class: "link-ink", target: "_blank" %> for the latest news.
       </p>
     </article>
 
-    <article class="py-12">
-      <h2 class="text-2xl font-semibold mb-4 text-white">TECH</h2>
-      <p class="text-xl text-gray-300">
-        A few high lights of the JAM <%= link "tech stack", to: Routes.page_path(@conn, :tech), class: "text-indigo-600 hover:text-blue-300" %> include a universal Virtual Machine, novel ZK cryptography and
+    <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+      <h2 class="eyebrow pt-2">04 &mdash; Tech</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        A few highlights of the JAM <%= link "tech stack", to: Routes.page_path(@conn, :tech), class: "link-ink" %> include a universal Virtual Machine, novel ZK cryptography and
         a unique block authoring algorithm. This allows JAM to offer dynamic execution sharding and
-        atomic composability across shards.<br/>While <i>sharing</i> - not <i>sharding</i> - security.
+        atomic composability across shards.<br/>While <i>sharing</i> &mdash; not <i>sharding</i> &mdash; security.
       </p>
     </article>
+
   </div>
 </section>

@@ -1,10 +1,9 @@
-<ul class="flex space-x-4">
-  <%= if @current_user do %>
-    <li class="text-gray-700"><%= @current_user.email %></li>
-    <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "text-blue-600 hover:text-blue-800" %></li>
-    <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "text-red-600 hover:text-red-800" %></li>
-  <% else %>
-    <!-- <li><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-green-600 hover:text-green-800" %></li> -->
-    <!-- <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-blue-600 hover:text-blue-800" %></li> -->
-  <% end %>
-</ul>
+<%= if @current_user do %>
+  <ul class="flex items-center gap-5 text-sm">
+    <li class="hidden font-mono text-xs text-ink-faint lg:block"><%= @current_user.email %></li>
+    <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "text-ink-mute transition-colors hover:text-ink" %></li>
+    <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "text-ink-mute transition-colors hover:text-red-300" %></li>
+  </ul>
+<% else %>
+  <%!-- Register / Log in links intentionally disabled — see user_registration / user_session routes --%>
+<% end %>

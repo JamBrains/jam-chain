@@ -1,47 +1,49 @@
-<.form let={f} for={@changeset} action={@action} class="max-w-md mx-auto mt-8">
+<% label_class = "mb-2 block text-sm font-medium text-ink-dim" %>
+<% input_class = "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
+<.form let={f} for={@changeset} action={@action} class="space-y-6">
   <%= if @changeset.action do %>
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <div class="rounded-xl border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-200" role="alert">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-  
-  <div class="mb-4">
-    <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= text_input f, :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+  <div>
+    <%= label f, :name, class: label_class %>
+    <%= text_input f, :name, class: input_class %>
     <%= error_tag f, :name %>
   </div>
-  
-  <div class="mb-4">
-    <%= label f, :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= textarea f, :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32" %>
+
+  <div>
+    <%= label f, :description, class: label_class %>
+    <%= textarea f, :description, rows: 5, class: input_class %>
     <%= error_tag f, :description %>
   </div>
-  
-  <div class="mb-4">
-    <%= label f, :homepage, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= text_input f, :homepage, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+  <div>
+    <%= label f, :homepage, class: label_class %>
+    <%= text_input f, :homepage, class: input_class %>
     <%= error_tag f, :homepage %>
   </div>
-  
-  <div class="mb-4">
-    <%= label f, :lang, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= text_input f, :lang, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+  <div>
+    <%= label f, :lang, class: label_class %>
+    <%= text_input f, :lang, class: input_class %>
     <%= error_tag f, :lang %>
   </div>
-  
-  <div class="mb-4">
-    <%= label f, :lang_set, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= text_input f, :lang_set, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+  <div>
+    <%= label f, :lang_set, class: label_class %>
+    <%= text_input f, :lang_set, class: input_class %>
     <%= error_tag f, :lang_set %>
   </div>
-  
-  <div class="mb-6">
-    <%= label f, :milestone, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= number_input f, :milestone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+  <div>
+    <%= label f, :milestone, class: label_class %>
+    <%= number_input f, :milestone, class: input_class %>
     <%= error_tag f, :milestone %>
   </div>
-  
-  <div class="flex items-center justify-between">
-    <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+
+  <div class="pt-2">
+    <%= submit "Save", class: "btn-primary" %>
   </div>
 </.form>

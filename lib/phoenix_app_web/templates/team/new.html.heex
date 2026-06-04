@@ -1,5 +1,12 @@
-<h1>New Team</h1>
+<div class="mx-auto max-w-md px-4 py-14 sm:px-6 md:py-20">
+  <p class="eyebrow">Clients</p>
+  <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">New Team</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.team_path(@conn, :create)) %>
+  <%= render "form.html", Map.put(assigns, :action, Routes.team_path(@conn, :create)) %>
 
-<span><%= link "Back", to: Routes.team_path(@conn, :index) %></span>
+  <div class="mt-8">
+    <%= link to: Routes.team_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
+      <span aria-hidden="true">&larr;</span> Back
+    <% end %>
+  </div>
+</div>
