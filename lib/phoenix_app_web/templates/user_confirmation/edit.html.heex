@@ -2,7 +2,7 @@
   <p class="eyebrow">Account</p>
   <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Confirm account</h1>
 
-  <.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
+  <.form :let={_f} for={%{}} as={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
     <div>
       <%= submit "Confirm my account", class: "btn-primary w-full" %>
     </div>

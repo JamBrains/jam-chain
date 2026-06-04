@@ -2,7 +2,7 @@
   <p class="eyebrow">Account</p>
   <h1 class="mb-8 mt-3 text-3xl font-semibold tracking-tight text-ink">Forgot your password?</h1>
 
-  <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)} class="space-y-6">
+  <.form :let={f} for={%{}} as={:user} action={Routes.user_reset_password_path(@conn, :create)} class="space-y-6">
     <div>
       <%= label f, :email, class: "mb-2 block text-sm font-medium text-ink-dim" %>
       <%= email_input f, :email, required: true, class: "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>

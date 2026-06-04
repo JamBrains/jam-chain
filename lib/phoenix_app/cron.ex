@@ -45,7 +45,7 @@ defmodule PhoenixApp.Cron do
   def refresh_teams! do
     Logger.info("Pulling repos...")
     res = HTTPoison.get!(@url, timeout: 60 * 1_000)
-    parsed = Poison.decode!(res.body, as: %{}, keys: :atoms)
+    parsed = Jason.decode!(res.body, keys: :atoms)
 
     for team <- parsed do
       case Repo.get_by(Team, name: team.name) do

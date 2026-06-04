@@ -1,6 +1,6 @@
 <% label_class = "mb-2 block text-sm font-medium text-ink-dim" %>
 <% input_class = "block w-full rounded-lg border-line bg-surface text-ink shadow-sm placeholder:text-ink-faint focus:border-ink-faint focus:ring-0" %>
-<.form let={f} for={@changeset} action={@action} class="space-y-6">
+<.form :let={f} for={@changeset} action={@action} class="space-y-6">
   <%= if @changeset.action do %>
     <div class="rounded-xl border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-200" role="alert">
       <p>Oops, something went wrong! Please check the errors below.</p>

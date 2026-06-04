@@ -33,27 +33,27 @@ defmodule PhoenixApp.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:poison, "~> 6.0"},
-      {:bcrypt_elixir, "~> 3.1"},
-      {:phoenix, "~> 1.7.14"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
+      {:bcrypt_elixir, "~> 3.3"},
+      {:phoenix, "~> 1.8"},
+      {:phoenix_ecto, "~> 4.7"},
+      {:ecto_sql, "~> 3.14"},
       {:ecto_sqlite3, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.0"},
-      {:httpoison, "~> 2.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_html, "~> 4.2"},
+      {:phoenix_html_helpers, "~> 1.0"},
+      {:httpoison, "~> 2.2"},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
       {:phoenix_view, "~> 2.0"},
-      {:phoenix_live_view, "~> 0.17.5"},
+      {:phoenix_live_view, "~> 1.1"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.6"},
-      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
+      {:phoenix_live_dashboard, "~> 0.8"},
+      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:swoosh, "~> 1.19"},
+      {:tailwind, "~> 0.4", runtime: Mix.env() == :dev},
+      {:telemetry_metrics, "~> 1.1"},
+      {:telemetry_poller, "~> 1.3"},
       {:gettext, "~> 1.0"},
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:jason, "~> 1.4"},
+      {:plug_cowboy, "~> 2.7"}
     ]
   end
 

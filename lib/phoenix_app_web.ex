@@ -19,10 +19,12 @@ defmodule PhoenixAppWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: PhoenixAppWeb
+      use Phoenix.Controller,
+        formats: [html: "View", json: "View"],
+        layouts: [html: {PhoenixAppWeb.LayoutView, :app}]
 
       import Plug.Conn
-      import PhoenixAppWeb.Gettext
+      use Gettext, backend: PhoenixAppWeb.Gettext
       alias PhoenixAppWeb.Router.Helpers, as: Routes
     end
   end
@@ -35,7 +37,7 @@ defmodule PhoenixAppWeb do
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
-        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+        only: [view_module: 1, view_template: 1]
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
@@ -80,23 +82,25 @@ defmodule PhoenixAppWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import PhoenixAppWeb.Gettext
+      use Gettext, backend: PhoenixAppWeb.Gettext
     end
   end
 
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+      import Phoenix.HTML
+      import Phoenix.HTML.Form
+      use PhoenixHTMLHelpers
 
-      # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
-      import Phoenix.LiveView.Helpers
+      # Import LiveView and .heex helpers (live_render, <.form>, etc)
+      import Phoenix.Component
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
       import PhoenixAppWeb.ErrorHelpers
-      import PhoenixAppWeb.Gettext
+      use Gettext, backend: PhoenixAppWeb.Gettext
       alias PhoenixAppWeb.Router.Helpers, as: Routes
     end
   end

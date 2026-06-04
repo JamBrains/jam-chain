@@ -3,7 +3,8 @@ defmodule PhoenixAppWeb.ErrorHelpers do
   Conveniences for translating and building error messages.
   """
 
-  use Phoenix.HTML
+  use PhoenixHTMLHelpers
+  import Phoenix.HTML.Form, only: [input_name: 2]
 
   @doc """
   Generates tag for inlined form input errors.
