@@ -1,0 +1,779 @@
+[
+    {
+        "name": "@interweb/jamx",
+        "description": "Jam Explorer & Client implementation in ts.",
+        "homepage": "https://github.com/interweb-it",
+        "languages": [
+            {
+                "name": "TypeScript",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@interweb_:matrix.org"
+        ],
+        "lang": "TypeScript",
+        "lang_set": "C"
+    },
+    {
+        "description": "",
+        "homepage": "",
+        "name": "Jamzilla",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@ascriv:matrix.org"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "A Team of Web3 Researchers+Devs; Currently private.",
+        "homepage": "https://chainscore.finance/",
+        "name": "Tessera",
+        "languages": [
+            {
+                "name": "Python",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Python",
+        "lang_set": "C"
+    },
+    {
+        "description": "",
+        "homepage": "https://github.com/Zero-Trust-Collective",
+        "name": "TRAM",
+        "languages": [
+            {
+                "name": "Python",
+                "set": "C"
+            },
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Python/Rust",
+        "lang_set": "C/B"
+    },
+    {
+        "description": "The first JAM team in Taiwan. Make JAM great again.",
+        "homepage": "https://hackmd.io/8ckvpUULSp-HqThsxXE3jg?view",
+        "name": "New JAMneration",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "mo0307b1@gmail.com"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "Parity experimental JAM client. Currently closed source.",
+        "homepage": "",
+        "name": "PolkaJam",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "JAM client implementation in Rust.",
+        "homepage": "https://universaldot.foundation",
+        "name": "UNIVERSALDOT",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "info@universaldot.foundation"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "name": "JamZig",
+        "description": "Implementation of the Jam client in the Zig programming language.",
+        "homepage": "https://jamzig.dev",
+        "languages": [
+            {
+                "name": "Zig",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "info@jamzig.dev",
+            "#jamzig:matrix.org"
+        ],
+        "lang": "Zig",
+        "lang_set": "B"
+    },
+    {
+        "description": "Some Polkadot coders taking up the challenge. Currently closed source.",
+        "homepage": "",
+        "name": "Graymatter",
+        "languages": [
+            {
+                "name": "Elixir",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Elixir",
+        "lang_set": "D"
+    },
+    {
+        "description": "A cute Python implementation of Jam. Currently closed source.",
+        "homepage": "",
+        "name": "Jampy",
+        "languages": [
+            {
+                "name": "Python",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@DaKKK:matrix.org"
+        ],
+        "lang": "Python",
+        "lang_set": "C"
+    },
+    {
+        "description": "Boka / \u6ce2\u5361 / b\u014d k\u01ce: JAM built with Swift. Brought to you by Laminar Labs.",
+        "homepage": "",
+        "name": "Boka",
+        "languages": [
+            {
+                "name": "Swift",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "bryan@acala.network"
+        ],
+        "lang": "Swift",
+        "lang_set": "B"
+    },
+    {
+        "description": "We are working on the Go implementation of Jam \ud83c\udf53.",
+        "homepage": "https://www.eiger.co/",
+        "name": "Strawberry",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "hello@eiger.co"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "TypeScript implementation of the JAM protocol. Currently not publicly visible.",
+        "homepage": "",
+        "name": "TSJam",
+        "languages": [
+            {
+                "name": "TypeScript",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@prematurata:matrix.org"
+        ],
+        "lang": "TypeScript",
+        "lang_set": "C"
+    },
+    {
+        "description": "Scala implementation of the JAM protocol. Currently not publicly visible.",
+        "homepage": "https://github.com/jam4scala/",
+        "name": "Jam4s",
+        "languages": [
+            {
+                "name": "Scala",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@sergei_astapov:matrix.org",
+            "@subotic:matrix.org",
+            "@celadari:matrix.org",
+            "@basedafdev:matrix.org"
+        ],
+        "lang": "Scala",
+        "lang_set": "D"
+    },
+    {
+        "description": "",
+        "homepage": "https://marcuspang.me/",
+        "name": "Jamgo",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@marcuspang:matrix.org"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "Spread the Joy with Every Jar - Taste the Magic of Our Jam & Jelly!",
+        "homepage": "https://zondax.ch/",
+        "name": "Jelly",
+        "languages": [
+            {
+                "name": "Julia",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "jelly@zondax.ch"
+        ],
+        "lang": "Julia",
+        "lang_set": "D"
+    },
+    {
+        "description": "",
+        "homepage": "",
+        "name": "Blockage",
+        "languages": [
+            {
+                "name": "Julia",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@OscarGB:matrix.org"
+        ],
+        "lang": "Julia",
+        "lang_set": "D"
+    },
+    {
+        "description": "We are a team of 8, experienced in Java, Kotlin and Scala blockchain development.",
+        "homepage": "",
+        "name": "JAM Forge",
+        "languages": [
+            {
+                "name": "Scala",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@philoniare:matrix.org"
+        ],
+        "lang": "Scala",
+        "lang_set": "D"
+    },
+    {
+        "description": "Colorful Notion's JAM. TestNet collaborations welcome.  Currently closed source.",
+        "homepage": "https://github.com/jam-duna/jamtestnet",
+        "name": "JAM DUNA",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@sourabhniyogi:matrix.org"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "",
+        "homepage": "https://fluffylabs.dev",
+        "name": "Typeberry",
+        "languages": [
+            {
+                "name": "TypeScript",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@tomusdrw:matrix.org"
+        ],
+        "lang": "TypeScript",
+        "lang_set": "C"
+    },
+    {
+        "description": "We are working on Zig implementation of JAM. Currently closed source.",
+        "homepage": "",
+        "name": "Jam With Zig",
+        "languages": [
+            {
+                "name": "Zig",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@rosarp:matrix.org"
+        ],
+        "lang": "Zig",
+        "lang_set": "B"
+    },
+    {
+        "description": "Rust implementation of JAM.",
+        "homepage": "",
+        "name": "Vinwolf",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "vinsystems@proton.me"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "C++ implementation of JAM.",
+        "homepage": "https://marmaladeorg.github.io/marmalade-frontend/",
+        "name": "Marmalade",
+        "languages": [
+            {
+                "name": "C++",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@sisco0:matrix.org"
+        ],
+        "lang": "C++",
+        "lang_set": "B"
+    },
+    {
+        "description": "Gossamer JAM client. Built in Go and developed by ChainSafe. Currently closed source.",
+        "homepage": "https://github.com/chainsafe",
+        "name": "Gossamer",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "gossamer@chainsafe.io"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "PBA Alumni Implementing JAM in Elixir.",
+        "homepage": "http://jamixir.org/",
+        "name": "Jamixir",
+        "languages": [
+            {
+                "name": "Elixir",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "daniel@jamixir.org",
+            "daiagi@jamixir.org"
+        ],
+        "lang": "Elixir",
+        "lang_set": "D"
+    },
+    {
+        "description": "A fun GO implementation of the JAM client by the AirLyft team. Currently closed source.",
+        "homepage": "https://polkadot.airlyft.one/",
+        "name": "Jamaica",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@rmagon:matrix.org"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "An OCaml implementation of the Polkadot JAM.",
+        "homepage": "",
+        "name": "Po-jam-l",
+        "languages": [
+            {
+                "name": "OCaml",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "me@markpetruska.eu"
+        ],
+        "lang": "OCaml",
+        "lang_set": "D"
+    },
+    {
+        "description": "C++ implementation of JAM protocol by Quadrivium.",
+        "homepage": "https://qdrvm.io/",
+        "name": "MORUM",
+        "languages": [
+            {
+                "name": "C++",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "info@qdrvm.io"
+        ],
+        "lang": "C++",
+        "lang_set": "B"
+    },
+    {
+        "description": "",
+        "homepage": "",
+        "name": "Block Cowboys",
+        "languages": [
+            {
+                "name": "C",
+                "set": "B"
+            },
+            {
+                "name": "C++",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "sbaileyms@gmail.com"
+        ],
+        "lang": "C/C++",
+        "lang_set": "B/B"
+    },
+    {
+        "description": "JAM Rust client implementation.",
+        "homepage": "",
+        "name": "FastRoll",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@0xjunha:matrix.org"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "Haskell implementation of the JAM protocol. Currently not publicly visible.",
+        "homepage": "",
+        "name": "JAMLabs",
+        "languages": [
+            {
+                "name": "Haskell",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@AltiMario:matrix.org",
+            "info@mlabs.city"
+        ],
+        "lang": "Haskell",
+        "lang_set": "C"
+    },
+    {
+        "name": "PyJAMaz",
+        "description": "Python Implementation of JAM by JAMdot Technologies.",
+        "homepage": "https://github.com/JAMdotTech",
+        "languages": [
+            {
+                "name": "Python",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "hello@jamdot.tech"
+        ],
+        "lang": "Python",
+        "lang_set": "C"
+    },
+    {
+        "name": "subjam",
+        "description": "Go implementation of JAM protocol.",
+        "homepage": "https://github.com/subjamdev",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "https://x.com/nathanccxv"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "name": "JavaJAM",
+        "description": "Java implementation of the JAM protocol.",
+        "homepage": "https://javajam.io",
+        "languages": [
+            {
+                "name": "Java",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "https://x.com/javajam_io",
+            "info@javajam.io"
+        ],
+        "lang": "Java",
+        "lang_set": "A"
+    },
+    {
+        "description": "TypeScript implementation of JAM by Clawbird.",
+        "homepage": "https://github.com/ltfschoen/jam",
+        "name": "Clawbird",
+        "languages": [
+            {
+                "name": "TypeScript",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@ltfschoen:matrix.org",
+            "https://x.com/ltfschoen",
+            "https://t.me/ltfschoen"
+        ],
+        "lang": "TypeScript",
+        "lang_set": "C"
+    },
+    {
+        "description": "Go Implementation of JAM by rcarback.",
+        "homepage": "https://gitlab.com/carback1/goberryjam",
+        "name": "goberryjam",
+        "languages": [
+            {
+                "name": "Go",
+                "set": "A"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@rick:carback.us",
+            "https://x.com/rcarback",
+            "https://carback.us/rick/contact/"
+        ],
+        "lang": "Go",
+        "lang_set": "A"
+    },
+    {
+        "description": "Elixir implementation of JAM.",
+        "homepage": "",
+        "name": "Jelix",
+        "languages": [
+            {
+                "name": "Elixir",
+                "set": "D"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@amritj:matrix.org",
+            "amrit@blockdudes.com",
+            "https://t.me/amritkumarjain"
+        ],
+        "lang": "Elixir",
+        "lang_set": "D"
+    },
+    {
+        "description": "A Minimal JAM Protocol Implementation in Rust.",
+        "homepage": "https://spacejam.app",
+        "name": "SpaceJam",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@clearloop:matrix.org"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "An impl with a focus on ease of understanding rather than performance.",
+        "homepage": "",
+        "name": "Gooseberry",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "gilescope@gmail.com"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "An experimental client implementation focus on the edge use cases. Public. Expect chaos.",
+        "homepage": "https://github.com/jamliqr/jamliquor",
+        "name": "JamLiquor",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "kresnasucandra@gmail.com"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "Swift implementation of the JAM protocol. Currently closed source.",
+        "homepage": "https://github.com/finsig",
+        "name": "Martlet",
+        "languages": [
+            {
+                "name": "Swift",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "hello@finsig.io"
+        ],
+        "lang": "Swift",
+        "lang_set": "B"
+    },
+    {
+        "name": "Jamers [jam-rs]",
+        "description": "Most compliant implementation of the full node.",
+        "homepage": "https://github.com/Shifting-Pigeon/jam-rs",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "contact@shiftingpigeon.com",
+            "@i35359595:matrix.org"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    },
+    {
+        "description": "Peanut Butter and JAM.",
+        "homepage": "https://esscrypt.com/",
+        "name": "PeanutButterAndJAM",
+        "languages": [
+            {
+                "name": "TypeScript",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@shimonchick:matrix.org"
+        ],
+        "lang": "TypeScript",
+        "lang_set": "C"
+    },
+    {
+        "description": "A JAM implementation in LISP.",
+        "homepage": "https://github.com/polykrate/JOTL/",
+        "name": "Jam on the Lisp",
+        "languages": [
+            {
+                "name": "Common Lisp",
+                "set": "C"
+            }
+        ],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Common Lisp",
+        "lang_set": "C"
+    },
+    {
+        "description": "LLM tries to write a JAM node.",
+        "homepage": "https://github.com/bitarray/grey",
+        "name": "Grey",
+        "languages": [
+            {
+                "name": "Rust",
+                "set": "B"
+            }
+        ],
+        "milestone": 0,
+        "contact": [
+            "@sorpaas"
+        ],
+        "lang": "Rust",
+        "lang_set": "B"
+    }
+]

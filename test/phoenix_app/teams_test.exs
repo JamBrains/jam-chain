@@ -71,5 +71,85 @@ defmodule PhoenixApp.TeamsTest do
       team = team_fixture()
       assert %Ecto.Changeset{} = Teams.change_team(team)
     end
+
+    test "create_team/1 rejects a duplicate name" do
+      team_fixture(%{name: "Tessera"})
+
+      assert {:error, changeset} =
+               Teams.create_team(%{
+                 name: "Tessera",
+                 lang: "Rust",
+                 lang_set: "B",
+                 milestone: 0,
+                 contact: []
+               })
+
+      assert "has already been taken" in errors_on(changeset).name
+      assert length(Teams.list_teams()) == 1
+    end
+  end
+
+  describe "import_teams!/1" do
+    alias PhoenixApp.Teams.Team
+
+    # A trimmed sample of the graypaper.com/clients/json payload, including the
+    # extra `languages` field the schema ignores. Hardcoded so the test never
+    # touches the network.
+    @payload """
+    [
+      {
+        "name": "Tessera",
+        "description": "A Team of Web3 Researchers+Devs; Currently private.",
+        "homepage": "https://chainscore.finance/",
+        "languages": [{"name": "Python", "set": "C"}],
+        "milestone": 0,
+        "contact": [],
+        "lang": "Python",
+        "lang_set": "C"
+      },
+      {
+        "name": "Strawberry",
+        "description": "Go implementation of Jam.",
+        "homepage": "https://www.eiger.co/",
+        "languages": [{"name": "Go", "set": "A"}],
+        "milestone": 0,
+        "contact": ["hello@eiger.co"],
+        "lang": "Go",
+        "lang_set": "A"
+      }
+    ]
+    """
+
+    test "inserts every team from the payload" do
+      Teams.import_teams!(@payload)
+
+      names = Teams.list_teams() |> Enum.map(& &1.name)
+      assert names == ["Strawberry", "Tessera"]
+
+      tessera = Repo.get_by!(Team, name: "Tessera")
+      assert tessera.lang == "Python"
+      assert tessera.lang_set == "C"
+    end
+
+    test "is idempotent — re-importing never duplicates" do
+      Teams.import_teams!(@payload)
+      Teams.import_teams!(@payload)
+
+      assert Repo.aggregate(Team, :count) == 2
+      assert Repo.aggregate(from(t in Team, where: t.name == "Tessera"), :count) == 1
+    end
+
+    test "overwrites existing teams on re-import, keeping a single row" do
+      Teams.import_teams!(@payload)
+      original = Repo.get_by!(Team, name: "Tessera")
+
+      updated_payload = String.replace(@payload, "\"Python\"", "\"Rust\"")
+      Teams.import_teams!(updated_payload)
+
+      tessera = Repo.get_by!(Team, name: "Tessera")
+      assert tessera.id == original.id
+      assert tessera.lang == "Rust"
+      assert Repo.aggregate(Team, :count) == 2
+    end
   end
 end
