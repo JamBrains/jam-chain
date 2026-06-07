@@ -5,16 +5,16 @@
     <img
       src={Routes.static_path(@conn, "/images/jam-pen-back.webp")}
       alt="JAM, handwritten"
-      class="fade-up mx-auto mb-2 w-64 md:mb-4 md:w-80"
+      class="mx-auto mb-2 w-64 md:mb-4 md:w-80"
     />
-    <h1 class="fade-up fade-up-1 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink md:text-6xl">
+    <h1 class="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink md:text-6xl">
       The Join Accumulate Machine
     </h1>
-    <p class="fade-up fade-up-2 mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-ink-mute md:text-lg">
-      Born from first-principles research and formally specified in the Gray Paper.<br/>
+    <p class="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-ink-mute md:text-lg">
+      A single computer with the power of hundreds.<br/>
       Implemented in parallel by independent teams around the world.
     </p>
-    <div class="fade-up fade-up-3 mt-10 flex flex-wrap items-center justify-center gap-4">
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
       <%= link to: Routes.page_path(@conn, :spec), class: "btn-primary" do %>
         Read the Gray Paper <span aria-hidden="true">&rarr;</span>
       <% end %>
@@ -64,36 +64,31 @@
   <div class="divide-y divide-line">
 
     <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-      <h2 class="eyebrow pt-2">01 &mdash; Research</h2>
+      <h2 class="eyebrow pt-2">01 &mdash; Compute</h2>
       <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
-        The <i><b>J</b>oin <b>A</b>ccumulate <b>M</b>achine</i> &mdash; set to succeed the Polkadot Relay Chain &mdash;
-        grew out of first-principles blockchain research
-        and is formally specified, edge to edge, in the <%= link "Gray Paper", to: Routes.page_path(@conn, :spec), class: "link-ink" %>.
-        A single mathematical spec &mdash; no reference client, no ambiguity &mdash; means every implementation
-        can be checked against the same source of truth.
+        The <i><b>J</b>oin <b>A</b>ccumulate <b>M</b>achine</i> runs heavy work across its cores in parallel, then
+        accumulates it into a single shared state that stays coherent everywhere at once. You get the
+        throughput of many chains and the composability of one.
       </p>
     </article>
 
     <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-      <h2 class="eyebrow pt-2">02 &mdash; Community</h2>
-      <div class="space-y-4">
-        <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
-          Independent <%= link "teams", to: Routes.team_path(@conn, :index), class: "link-ink" %> are implementing JAM in parallel, across many languages &mdash;
-          client diversity from day one, for network resilience and a spec proven unambiguous.
-          Development happens collaboratively and in the open: join <%= link "our chats", to: "https://docs.jamcha.in/", class: "link-ink", target: "_blank" %> or read <%= link "the archives", to: "https://paritytech.github.io/matrix-archiver/", class: "link-ink", target: "_blank" %> for the latest news.
-        </p>
-        <p class="text-sm leading-relaxed text-ink-faint">
-          Implementers are backed by a 10M DOT <%= link "prize", to: "https://jam.web3.foundation/", class: "link-ink", target: "_blank" %> from the Web3 Foundation.
-        </p>
-      </div>
+      <h2 class="eyebrow pt-2">02 &mdash; Design</h2>
+      <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
+        For years, scaling a chain meant taking a side: one world computer, fast to reason about and quick to
+        congest, or many shards that scale freely but can barely speak to each other. JAM is both at once.
+        And it is open to all. Any new service runs alongside the rest, sharing the same security and composing with it.
+      </p>
     </article>
 
     <article class="grid gap-6 py-14 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-      <h2 class="eyebrow pt-2">03 &mdash; Tech</h2>
+      <h2 class="eyebrow pt-2">03 &mdash; Specification</h2>
       <p class="text-lg leading-relaxed text-ink-dim md:text-xl">
-        A few highlights of the JAM <%= link "tech stack", to: Routes.page_path(@conn, :tech), class: "link-ink" %> include a universal Virtual Machine, novel ZK cryptography and
-        a unique block authoring algorithm. This allows JAM to offer dynamic execution sharding and
-        atomic composability across shards.<br/>While <i>sharing</i> &mdash; not <i>sharding</i> &mdash; security.
+        Most chains are defined, in the end, by a reference client:
+        where its code is unclear, so is the protocol. JAM is defined instead by mathematics, set down in full
+        in the <%= link "Gray Paper", to: Routes.page_path(@conn, :spec), class: "link-ink" %>. There is no canonical
+        implementation to defer to, no ambiguity to inherit, and every independent client is measured against the
+        same fixed source of truth rather than against someone else's code.
       </p>
     </article>
 

@@ -130,21 +130,6 @@
   text-decoration: none;
 }
 
-/* Entrance animation — hero load moment (no-op when reduced motion is set) */
-@media (prefers-reduced-motion: no-preference) {
-  .fade-up {
-    animation: 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0s both fade-up-keys;
-  }
-  .fade-up-1 { animation-delay: 0.1s; }
-  .fade-up-2 { animation-delay: 0.2s; }
-  .fade-up-3 { animation-delay: 0.3s; }
-}
-
-@keyframes fade-up-keys {
-  0% { opacity: 0; transform: translateY(16px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 .fade-in-scale {
   animation: 0.2s ease-in 0s normal forwards 1 fade-in-scale-keys;
 }

@@ -42,7 +42,7 @@ Repo.insert!(%Event{
   contact: [],
   when_from: ~D[2026-06-18],
   when_to: ~D[2026-06-19],
-  where: "Funkhaus Berlin, Germany",
+  where: "Berlin, Germany",
   where_link: "https://maps.app.goo.gl/4KTU5ubXKWCgLfKp9",
   duration: "2 days",
 })
