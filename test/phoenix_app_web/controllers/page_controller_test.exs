@@ -8,7 +8,7 @@ defmodule PhoenixAppWeb.PageControllerTest do
 
   test "GET /spec", %{conn: conn} do
     conn = get(conn, "/spec")
-    assert html_response(conn, 200) =~ "Graypaper"
+    assert html_response(conn, 200) =~ "Gray Paper"
   end
 
   test "GET /tech", %{conn: conn} do

@@ -1,6 +1,4 @@
 defmodule PhoenixApp.Cron do
-  alias PhoenixApp.Repo
-  alias PhoenixApp.Teams.Team
   require Logger
   use GenServer
 
@@ -45,17 +43,7 @@ defmodule PhoenixApp.Cron do
   def refresh_teams! do
     Logger.info("Pulling repos...")
     res = HTTPoison.get!(@url, timeout: 60 * 1_000)
-    parsed = Jason.decode!(res.body, keys: :atoms)
-
-    for team <- parsed do
-      case Repo.get_by(Team, name: team.name) do
-        nil  -> %Team{}
-        team -> team
-      end
-      |> Team.changeset(team)
-      |> Repo.insert_or_update!()
-    end
-
-    Logger.info("Updated #{length(parsed)} teams.")
+    teams = PhoenixApp.Teams.import_teams!(res.body)
+    Logger.info("Updated #{length(teams)} teams.")
   end
 end

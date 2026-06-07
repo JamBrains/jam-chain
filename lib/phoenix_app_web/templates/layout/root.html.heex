@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="theme-color" content="#0f0f0f"/>
     <%= csrf_meta_tag() %>
-    <title>JAM Chain 🥁✨</title>
+    <title>JAM Chain</title>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
@@ -28,9 +28,11 @@
                 Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
               <% end %>
             </li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "text-sm text-ink-faint transition-colors hover:text-ink" %></li>
-            <% end %>
+            <li>
+              <%= link to: "https://jamtoaster.network/", target: "_blank", rel: "noopener noreferrer", class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
+                Toaster <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+              <% end %>
+            </li>
           </ul>
         </nav>
 
@@ -71,6 +73,11 @@
                   <% end %>
                 </li>
                 <li>
+                  <%= link to: "https://jamtoaster.network/", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>
+                    Toaster <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
+                  <% end %>
+                </li>
+                <li>
                   <%= link to: "https://github.com/JamBrains/jam-chain", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>
                     GitHub <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
                   <% end %>
@@ -92,7 +99,7 @@
           <div class="max-w-xs space-y-4">
             <img src={Routes.static_path(@conn, "/images/jam-pen-back.webp")} alt="JAM" class="h-14 w-auto"/>
             <p class="text-sm leading-relaxed text-ink-faint">
-              The Join Accumulate Machine &mdash; a trustless supercomputer designed as successor to the Polkadot Relay Chain.
+              The Join Accumulate Machine &mdash; a trustless supercomputer born from research, built by a global community.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-12 sm:gap-20">
@@ -108,7 +115,7 @@
             <div>
               <p class="eyebrow mb-5">Ecosystem</p>
               <ul class="space-y-3 text-sm">
-                <li><a href="https://graypaper.com/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Graypaper <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
+                <li><a href="https://graypaper.com/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Gray Paper <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
                 <li><a href="https://docs.jamcha.in/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
                 <li><a href="https://jam.web3.foundation/" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">W3F Prize <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>
                 <li><a href="https://github.com/JamBrains/jam-chain" target="_blank" rel="noopener noreferrer" class="text-ink-mute transition-colors hover:text-ink">GitHub <span class="text-ink-faint" aria-hidden="true">&#8599;</span></a></li>

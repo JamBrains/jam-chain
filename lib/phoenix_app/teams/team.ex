@@ -26,5 +26,6 @@ defmodule PhoenixApp.Teams.Team do
     team
     |> cast(attrs, @all)
     |> validate_required(@required)
+    |> unique_constraint(:name)
   end
 end

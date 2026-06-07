@@ -22,6 +22,28 @@ defmodule PhoenixApp.Teams do
   end
 
   @doc """
+  Upserts teams from a JSON payload (the clients list, as served by
+  graypaper.com/clients/json), keyed by `name`.
+
+  Existing teams are overwritten with the incoming data, new ones are
+  inserted. Idempotent: running it twice never produces duplicates.
+  Shared by the cron pull and the database seeds. Returns the list of
+  upserted teams.
+  """
+  def import_teams!(json) when is_binary(json) do
+    json
+    |> Jason.decode!(keys: :atoms)
+    |> Enum.map(fn attrs ->
+      %Team{}
+      |> Team.changeset(attrs)
+      |> Repo.insert!(
+        on_conflict: {:replace_all_except, [:id, :inserted_at]},
+        conflict_target: :name
+      )
+    end)
+  end
+
+  @doc """
   Gets a single team.
 
   Raises `Ecto.NoResultsError` if the Team does not exist.
