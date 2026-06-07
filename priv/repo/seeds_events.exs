@@ -38,6 +38,9 @@ alias PhoenixApp.Events.Event
 Repo.insert!(%Event{
   name: "Web3 Summit",
   short: "Summit in Berlin around privacy, sovereignty and digital agency.",
+  long: """
+  JAM implementors meetup on the second (19th) day afternoon at the Funkhaus venue.
+  """,
   links: ["https://web3summit.com/"],
   contact: [],
   when_from: ~D[2026-06-18],

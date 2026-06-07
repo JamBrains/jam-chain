@@ -7,6 +7,10 @@
     <meta name="theme-color" content="#0f0f0f"/>
     <%= csrf_meta_tag() %>
     <title>JAM Chain</title>
+    <link rel="icon" href={Routes.static_path(@conn, "/favicon.ico")} sizes="any"/>
+    <link rel="icon" type="image/png" sizes="32x32" href={Routes.static_path(@conn, "/images/favicon-32.png")}/>
+    <link rel="icon" type="image/png" sizes="512x512" href={Routes.static_path(@conn, "/images/icon-512.png")}/>
+    <link rel="apple-touch-icon" href={Routes.static_path(@conn, "/images/apple-touch-icon.png")}/>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
@@ -22,7 +26,6 @@
             <li><%= link "Tech", to: Routes.page_path(@conn, :tech), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
             <li><%= link "Spec", to: Routes.page_path(@conn, :spec), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
             <li><%= link "Clients", to: Routes.team_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
-            <li><%= link "Events", to: Routes.event_path(@conn, :index), class: "text-sm text-ink-mute transition-colors hover:text-ink" %></li>
             <li>
               <%= link to: "https://docs.jamcha.in/", target: "_blank", rel: "noopener noreferrer", class: "text-sm text-ink-mute transition-colors hover:text-ink" do %>
                 Docs <span class="text-ink-faint" aria-hidden="true">&#8599;</span>
@@ -60,7 +63,6 @@
                 <li><%= link "Tech", to: Routes.page_path(@conn, :tech), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
                 <li><%= link "Spec", to: Routes.page_path(@conn, :spec), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
                 <li><%= link "Clients", to: Routes.team_path(@conn, :index), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
-                <li><%= link "Events", to: Routes.event_path(@conn, :index), class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" %></li>
                 <li class="my-2 border-t border-line" role="presentation"></li>
                 <li>
                   <%= link to: "https://docs.jamcha.in/", target: "_blank", rel: "noopener noreferrer", class: "block rounded-lg px-4 py-2.5 text-sm text-ink-dim transition-colors hover:bg-surface-2 hover:text-ink" do %>

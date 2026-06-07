@@ -23,11 +23,11 @@
   <div class="card grid grid-cols-1 divide-y divide-line overflow-hidden sm:grid-cols-2 sm:divide-x sm:divide-y-0">
     <div class="px-8 py-8 text-center">
       <p class="font-mono text-4xl font-semibold tracking-tight text-ink"><%= length(@teams) %></p>
-      <p class="eyebrow mt-3">Total teams</p>
+      <p class="eyebrow mt-3">Teams</p>
     </div>
     <div class="px-8 py-8 text-center">
       <p class="font-mono text-4xl font-semibold tracking-tight text-ink"><%= @teams |> Enum.map(&(&1.lang)) |> Enum.uniq() |> length() %></p>
-      <p class="eyebrow mt-3">Programming languages</p>
+      <p class="eyebrow mt-3">Languages</p>
     </div>
   </div>
 
