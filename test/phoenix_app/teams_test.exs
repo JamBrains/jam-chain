@@ -47,7 +47,12 @@ defmodule PhoenixApp.TeamsTest do
 
     test "update_team/2 with valid data updates the team" do
       team = team_fixture()
-      update_attrs = %{description: "some updated description", homepage: "some updated homepage", name: "some updated name"}
+
+      update_attrs = %{
+        description: "some updated description",
+        homepage: "some updated homepage",
+        name: "some updated name"
+      }
 
       assert {:ok, %Team{} = team} = Teams.update_team(team, update_attrs)
       assert team.description == "some updated description"

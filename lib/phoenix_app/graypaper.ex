@@ -8,6 +8,7 @@ defmodule PhoenixApp.Graypaper do
       res = http_get!(url)
       # Get the actual URL, wtf...
       url = res.headers |> Enum.find(fn {k, _} -> k == "Location" end) |> elem(1)
+
       if url == nil do
         raise "No location header found"
       end
@@ -45,6 +46,7 @@ defmodule PhoenixApp.Graypaper do
 
   def http_get!(url) do
     Logger.info("Requesting '#{url}'")
+
     HTTPoison.get!(url, [
       {"Accept", "application/vnd.github+json"},
       {"Authorization", "Bearer #{System.fetch_env!("GITHUB_TOKEN")}"},

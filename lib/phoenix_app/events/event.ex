@@ -25,7 +25,22 @@ defmodule PhoenixApp.Events.Event do
   @doc false
   def changeset(team, attrs) do
     team
-    |> cast(attrs, @all ++ [:when_to, :when_from, :when_est, :where_link, :duration, :long, :short, :links, :historic, :learn_more_id])
+    |> cast(
+      attrs,
+      @all ++
+        [
+          :when_to,
+          :when_from,
+          :when_est,
+          :where_link,
+          :duration,
+          :long,
+          :short,
+          :links,
+          :historic,
+          :learn_more_id
+        ]
+    )
     |> validate_required(@all)
   end
 end

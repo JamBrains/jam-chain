@@ -16,7 +16,8 @@ defmodule PhoenixAppWeb.EventView do
     |> List.first()
   end
 
-  def fmt_when(%Event{when_from: from, when_to: to} = event) when not is_nil(from) and not is_nil(to) do
+  def fmt_when(%Event{when_from: from, when_to: to} = event)
+      when not is_nil(from) and not is_nil(to) do
     """
     #{event.when_from} - #{event.when_to}
     """
@@ -47,19 +48,27 @@ defmodule PhoenixAppWeb.EventView do
   # >Make sure to join the [1](Matrix chat) for updates.
   # becomes:
   # >Make sure to join the <a href="Enum.at(event.links, 1)">Matrix chat</a> for updates.
-def fmt_desc(%Event{long: desc, links: links} = _event) when not is_nil(desc) and is_list(links) do
+  def fmt_desc(%Event{long: desc, links: links} = _event)
+      when not is_nil(desc) and is_list(links) do
     matches = Regex.scan(~r/\[([0-9]+)\]\(([^)]+)\)/, desc)
+
     Enum.reduce(matches, desc, fn [full_match, idx_str, name], acc ->
       case Integer.parse(idx_str) do
         {idx, _} ->
           link = Enum.at(links, idx)
+
           if link do
-            String.replace(acc, full_match,
-              "<a href=\"#{link}\" class=\"text-blue-400 hover:text-blue-300\">#{name}</a><sup>#{idx + 1}</sup>")
+            String.replace(
+              acc,
+              full_match,
+              "<a href=\"#{link}\" class=\"text-blue-400 hover:text-blue-300\">#{name}</a><sup>#{idx + 1}</sup>"
+            )
           else
             acc
           end
-        _ -> acc
+
+        _ ->
+          acc
       end
     end)
     |> String.replace(~r/\n/, "<br>")

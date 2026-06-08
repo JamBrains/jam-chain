@@ -12,7 +12,11 @@ defmodule PhoenixAppWeb.TeamControllerTest do
     milestone: 0,
     contact: ["some contact"]
   }
-  @update_attrs %{description: "some updated description", homepage: "some updated homepage", name: "some updated name"}
+  @update_attrs %{
+    description: "some updated description",
+    homepage: "some updated homepage",
+    name: "some updated name"
+  }
   @invalid_attrs %{description: nil, homepage: nil, name: nil}
 
   setup :register_and_log_in_user

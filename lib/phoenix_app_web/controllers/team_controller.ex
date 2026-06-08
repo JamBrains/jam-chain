@@ -8,7 +8,8 @@ defmodule PhoenixAppWeb.TeamController do
     sort_by = params["sort"] || "name"
     sort_order = params["order"] || "asc"
 
-    teams = Teams.list_teams()
+    teams =
+      Teams.list_teams()
       |> Enum.sort_by(&Map.get(&1, String.to_atom(sort_by)), &sort_compare(&1, &2, sort_order))
 
     render(conn, "index.html", teams: teams, sort_by: sort_by, sort_order: sort_order)
