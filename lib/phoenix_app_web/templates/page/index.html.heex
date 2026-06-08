@@ -1,11 +1,11 @@
 <%!-- Hero --%>
 <section class="relative overflow-hidden">
   <div class="glow-top pointer-events-none absolute inset-0" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-4xl px-4 pb-20 pt-6 text-center sm:px-6 md:pb-28 md:pt-10">
+  <div class="relative mx-auto max-w-4xl px-4 pb-12 pt-6 text-center sm:px-6 md:pb-16 md:pt-10">
     <img
       src={Routes.static_path(@conn, "/images/jam-pen-back.webp")}
       alt="JAM, handwritten"
-      class="mx-auto mb-2 w-64 md:mb-4 md:w-80"
+      class="mx-auto mb-8 w-64 md:mb-12 md:w-80"
     />
     <h1 class="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink md:text-6xl">
       The Join Accumulate Machine
@@ -42,9 +42,8 @@
 </section>
 
 <%!-- Next event teaser --%>
-<% upcoming = Enum.reject(@events, & &1.historic) %>
-<%= if upcoming != [] do %>
-  <% next_event = upcoming |> Enum.sort_by(&(&1.when_from || ~D[9999-12-31]), Date) |> List.first() %>
+<% next_event = PhoenixAppWeb.EventView.next_event(@events) %>
+<%= if next_event do %>
   <section class="mx-auto max-w-5xl px-4 pt-12 sm:px-6">
     <%= link to: Routes.event_path(@conn, :show, next_event), class: "block group" do %>
       <div class="card card-hover flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-4">

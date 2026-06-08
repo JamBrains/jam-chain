@@ -3,6 +3,19 @@ defmodule PhoenixAppWeb.EventView do
 
   alias PhoenixApp.Events.Event
 
+  # Pick the next non-historic event to feature. An event is dropped once its
+  # `when_to` is more than 24 hours in the past; events without a `when_to` are
+  # always eligible. Returns the earliest eligible event by `when_from`, or nil.
+  def next_event(events) do
+    today = Date.utc_today()
+
+    events
+    |> Enum.reject(& &1.historic)
+    |> Enum.filter(&(is_nil(&1.when_to) || Date.diff(today, &1.when_to) <= 1))
+    |> Enum.sort_by(&(&1.when_from || ~D[9999-12-31]), Date)
+    |> List.first()
+  end
+
   def fmt_when(%Event{when_from: from, when_to: to} = event) when not is_nil(from) and not is_nil(to) do
     """
     #{event.when_from} - #{event.when_to}
